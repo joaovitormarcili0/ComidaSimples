@@ -137,7 +137,6 @@ ul li {
   margin-bottom: 10px;
 }
 
-/* Modo de preparo/toggle */
 #preparo {
   margin-top: 60px;
 }
@@ -165,13 +164,14 @@ ul li {
   background-color: #f0f0f0;
 }
 
-.toggle p {
+.toggle pre {
   padding: 0 16px 16px;
   margin: 0;
   color: #444;
+  background: none;
+  font-family: inherit;
 }
 
-/* Responsivo */
 @media (max-width: 600px) {
   #dias-container {
     flex-direction: column;
