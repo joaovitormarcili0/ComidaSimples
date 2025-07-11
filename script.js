@@ -1102,6 +1102,186 @@ function decimalParaFracao(decimal) {
   return decimal.toFixed(2).replace(/\.00$/, "");
 }
 
+// ---------------------- CALORIAS & MACROS: REFERÊNCIA POR INGREDIENTE ----------------------
+const macrosIngredientes = {
+  // Carnes
+  "Carne bovina (g)": {
+    cal: (g) => (g / 100) * 250,
+    fat: (g) => (g / 100) * 18,
+    prot: (g) => (g / 100) * 26,
+  },
+  "Carne moída (g)": {
+    cal: (g) => (g / 100) * 250,
+    fat: (g) => (g / 100) * 18,
+    prot: (g) => (g / 100) * 26,
+  },
+  "Bife bovino (g)": {
+    cal: (g) => (g / 100) * 250,
+    fat: (g) => (g / 100) * 18,
+    prot: (g) => (g / 100) * 26,
+  },
+  "Carne em tiras (g)": {
+    cal: (g) => (g / 100) * 250,
+    fat: (g) => (g / 100) * 18,
+    prot: (g) => (g / 100) * 26,
+  },
+  // Frango
+  "Frango (g)": {
+    cal: (g) => (g / 100) * 180,
+    fat: (g) => (g / 100) * 9,
+    prot: (g) => (g / 100) * 27,
+  },
+  "Peito de frango (g)": {
+    cal: (g) => (g / 100) * 165,
+    fat: (g) => (g / 100) * 3.5,
+    prot: (g) => (g / 100) * 31,
+  },
+  "Coxa de frango (g)": {
+    cal: (g) => (g / 100) * 180,
+    fat: (g) => (g / 100) * 10,
+    prot: (g) => (g / 100) * 26,
+  },
+  "Sobrecoxa de frango (g)": {
+    cal: (g) => (g / 100) * 190,
+    fat: (g) => (g / 100) * 12,
+    prot: (g) => (g / 100) * 24,
+  },
+  // Peixe
+  "Filé de peixe (g)": {
+    cal: (g) => (g / 100) * 130,
+    fat: (g) => (g / 100) * 2.5,
+    prot: (g) => (g / 100) * 26,
+  },
+  "Filé de tilápia (g)": {
+    cal: (g) => (g / 100) * 110,
+    fat: (g) => (g / 100) * 2,
+    prot: (g) => (g / 100) * 23,
+  },
+  "Peixe em postas (g)": {
+    cal: (g) => (g / 100) * 140,
+    fat: (g) => (g / 100) * 4,
+    prot: (g) => (g / 100) * 25,
+  },
+  "Iscas de peixe (g)": {
+    cal: (g) => (g / 100) * 130,
+    fat: (g) => (g / 100) * 2.5,
+    prot: (g) => (g / 100) * 26,
+  },
+  "Peixe desfiado (g)": {
+    cal: (g) => (g / 100) * 130,
+    fat: (g) => (g / 100) * 2.5,
+    prot: (g) => (g / 100) * 26,
+  },
+  // Vegetarianos & Veganos
+  "Ovo (unidade)": {
+    cal: (q) => q * 70,
+    fat: (q) => q * 5,
+    prot: (q) => q * 6,
+  },
+  "Tofu (g)": {
+    cal: (g) => (g / 100) * 75,
+    fat: (g) => (g / 100) * 4.8,
+    prot: (g) => (g / 100) * 8.1,
+  },
+  "Ricota (g)": {
+    cal: (g) => (g / 100) * 140,
+    fat: (g) => (g / 100) * 10,
+    prot: (g) => (g / 100) * 11,
+  },
+  "Queijo (g)": {
+    cal: (g) => (g / 100) * 320,
+    fat: (g) => (g / 100) * 26,
+    prot: (g) => (g / 100) * 20,
+  },
+  "Mussarela (g)": {
+    cal: (g) => (g / 100) * 320,
+    fat: (g) => (g / 100) * 25,
+    prot: (g) => (g / 100) * 22,
+  },
+  "Leite (ml)": {
+    cal: (ml) => (ml / 100) * 64,
+    fat: (ml) => (ml / 100) * 3.5,
+    prot: (ml) => (ml / 100) * 3.2,
+  },
+  // Grãos e massas (exemplos, pode expandir)
+  "Arroz branco (xícara)": {
+    cal: (x) => x * 205,
+    fat: (x) => x * 0.4,
+    prot: (x) => x * 4.2,
+  },
+  "Grão-de-bico cozido (xícara)": {
+    cal: (x) => x * 269,
+    fat: (x) => x * 4.2,
+    prot: (x) => x * 14.5,
+  },
+  "Lentilha (xícara)": {
+    cal: (x) => x * 230,
+    fat: (x) => x * 0.8,
+    prot: (x) => x * 17.9,
+  },
+  // Vegetais comuns (exemplo)
+  "Batata (unid.)": {
+    cal: (q) => q * 80,
+    fat: (q) => 0,
+    prot: (q) => q * 2,
+  },
+  "Cenoura (unid.)": {
+    cal: (q) => q * 35,
+    fat: (q) => 0,
+    prot: (q) => q * 0.8,
+  },
+  "Abobrinha (unid.)": {
+    cal: (q) => q * 20,
+    fat: (q) => 0.2 * q,
+    prot: (q) => q * 1.5,
+  },
+  "Berinjela (unid.)": {
+    cal: (q) => q * 30,
+    fat: (q) => 0.2 * q,
+    prot: (q) => q * 1,
+  },
+  // Temperos/óleos (exemplo)
+  "Azeite (ml)": {
+    cal: (ml) => (ml / 10) * 90,
+    fat: (ml) => (ml / 10) * 10,
+    prot: (ml) => 0,
+  },
+  "Óleo (ml)": {
+    cal: (ml) => (ml / 10) * 90,
+    fat: (ml) => (ml / 10) * 10,
+    prot: (ml) => 0,
+  },
+  "Alho (dente)": {
+    cal: (q) => q * 5,
+    fat: (q) => 0,
+    prot: (q) => q * 0.2,
+  },
+  "Cebola (unidade)": {
+    cal: (q) => q * 40,
+    fat: (q) => 0,
+    prot: (q) => q * 1.1,
+  },
+  // Adicione/expanda conforme suas receitas!
+};
+
+// Função: Calcular macros (calorias, gordura, proteína)
+function calcularMacros(ingredientes) {
+  let totalCal = 0, totalFat = 0, totalProt = 0;
+  for (let ingrediente in ingredientes) {
+    let quantidade = parseQuantidade(ingredientes[ingrediente]);
+    if (macrosIngredientes[ingrediente]) {
+      totalCal += macrosIngredientes[ingrediente].cal ? macrosIngredientes[ingrediente].cal(quantidade) : 0;
+      totalFat += macrosIngredientes[ingrediente].fat ? macrosIngredientes[ingrediente].fat(quantidade) : 0;
+      totalProt += macrosIngredientes[ingrediente].prot ? macrosIngredientes[ingrediente].prot(quantidade) : 0;
+    }
+  }
+  return {
+    cal: Math.round(totalCal),
+    fat: Number(totalFat.toFixed(1)),
+    prot: Number(totalProt.toFixed(1)),
+  };
+}
+
 // Monta os selects de proteína para cada dia útil
 const diasContainer = document.getElementById("dias-container");
 diasContainer.innerHTML = "";
@@ -1159,8 +1339,16 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
 
     pratosSemana.push(pratoSelecionado);
 
-    resultadoHTML += `<li><strong>${diasUteis[index]}:</strong> ${pratoSelecionado.nome}</li>`;
+    // ------------ CALORIAS PARA TODOS OS TIPOS DE PRATO ------------
+    let calorias = "";
+    if (pratoSelecionado && pratoSelecionado.ingredientes && Object.keys(pratoSelecionado.ingredientes).length > 0) {
+      const macros = calcularMacros(pratoSelecionado.ingredientes);
+      if (macros.cal > 0) calorias = ` <span style="color:#888; font-size:0.95em;">~${macros.cal} kcal</span>`;
+    }
 
+    resultadoHTML += `<li><strong>${diasUteis[index]}:</strong> ${pratoSelecionado.nome}${calorias}</li>`;
+
+    // Lista de compras acumulada
     for (const [ingrediente, quantidade] of Object.entries(pratoSelecionado.ingredientes)) {
       const quantidadeUnitaria = parseQuantidade(quantidade);
       const total = quantidadeUnitaria * pessoas;
@@ -1217,7 +1405,7 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
       const details = document.createElement("details");
       details.className = "toggle";
 
-      // Ingredientes (com separador)
+      // Ingredientes
       let ingredientesHtml = `
         <div class="preparo-ingredientes-titulo">
           Ingredientes para ${pessoas} pessoa${pessoas > 1 ? 's' : ''}:
@@ -1239,14 +1427,14 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
           : `${quantidadeFormatada} ${nome}`;
         ingredientesHtml += `<li>${texto}</li>`;
       });
-      ingredientesHtml += '</ul><hr class="preparo-divider"/>';
+      ingredientesHtml += '</ul><hr class="preparo-divider" style="border-top: 1px solid #222; margin: 12px 0;"/>';
 
       // Passo-a-passo elegante
       const passos = prato.preparo
         .trim()
         .split(/\n+/)
         .filter(p => p.length)
-        .map(l => l.replace(/^\d+\.\s*/, "")); // Remove "1. ", "2. ", etc se tiver
+        .map(l => l.replace(/^\d+\.\s*/, "")); // Remove "1. ", "2. ", etc
 
       let passosHtml = `
         <div class="preparo-passoapasso-titulo">Modo de preparo</div>
@@ -1256,12 +1444,29 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
       });
       passosHtml += "</ol>";
 
+      // Toggle de Macros DEPOIS do modo de preparo
+      const macros = calcularMacros(prato.ingredientes);
+      let macrosHtml = `
+        <div style="border-top: 1px solid #000; margin:16px 0 8px 0;"></div>
+        <details class="toggle-macros" style="margin-bottom:8px;">
+          <summary style="font-size:0.97em; color:#666; font-weight:500;">Informação nutricional (estimada)</summary>
+          <div style="padding:8px 0 8px 12px;">
+            <span><strong>Calorias:</strong> ${macros.cal} kcal</span><br/>
+            <span><strong>Gorduras totais:</strong> ${macros.fat} g</span><br/>
+            <span><strong>Proteínas:</strong> ${macros.prot} g</span>
+          </div>
+        </details>
+      `;
+
       details.innerHTML = `
         <summary>${prato.nome}</summary>
         ${ingredientesHtml}
         ${passosHtml}
+        ${macrosHtml}
       `;
+
       preparoContainer.appendChild(details);
     }
   });
 });
+
