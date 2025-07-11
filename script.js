@@ -552,7 +552,7 @@ diasUteis.forEach(dia => {
   diasContainer.appendChild(div);
 });
 
-// Gera cardápio, lista de compras e modo de preparo detalhado
+// Função para gerar cardápio, lista de compras e modo de preparo detalhado
 document.getElementById("formulario").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -564,6 +564,7 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
   let ultimaProteina = null;
   const pratosSemana = [];
 
+  // Sorteia ou seleciona pratos sem repetir proteína no dia seguinte
   selects.forEach((select, index) => {
     const escolha = select.value;
     let proteina;
@@ -603,7 +604,7 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
   resultadoHTML += "</ul>";
   document.getElementById("resultado").innerHTML = resultadoHTML;
 
-  // Exibir lista de compras formatada
+  // Exibir lista de compras formatada e ordenada
   const comprasEl = document.getElementById("compras");
   comprasEl.style.display = "block";
   const listaEl = document.getElementById("lista-compras");
