@@ -1,27 +1,40 @@
-<div class="container">
-  <h1>Cardápio da Semana</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gerador de Cardápio da Semana</title>
+  <meta name="description" content="Monte um cardápio semanal para sua família de forma automática, com lista de compras e modo de preparo detalhado para cada prato.">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Cardápio da Semana</h1>
 
-  <form id="formulario">
-    <div class="pessoas">
-      <label for="quantidade">Quantas pessoas?</label>
-      <input type="number" id="quantidade" name="quantidade" min="1" value="3" />
+    <form id="formulario">
+      <div class="pessoas">
+        <label for="quantidade">Quantas pessoas?</label>
+        <input type="number" id="quantidade" name="quantidade" min="1" value="3" />
+      </div>
+
+      <div id="dias-container"></div>
+
+      <button type="submit">Gerar Cardápio</button>
+    </form>
+
+    <div class="grid">
+      <section id="resultado"></section>
+      <section id="compras" style="display: none;">
+        <h2>Lista de Compras da Semana</h2>
+        <ul id="lista-compras"></ul>
+      </section>
     </div>
 
-    <div id="dias-container"></div>
-
-    <button type="submit">Gerar Cardápio</button>
-  </form>
-
-  <div class="grid">
-    <section id="resultado"></section>
-    <section id="compras" style="display: none;">
-      <h2>Lista de Compras da Semana</h2>
-      <ul id="lista-compras"></ul>
+    <section id="preparo" style="display: none;">
+      <h2>Modo de Preparo</h2>
+      <div id="modo-preparo-container"></div>
     </section>
   </div>
-
-  <section id="preparo" style="display: none;">
-    <h2>Modo de Preparo</h2>
-    <div id="modo-preparo-container"></div>
-  </section>
-</div>
+  <script src="script.js"></script>
+</body>
+</html>
