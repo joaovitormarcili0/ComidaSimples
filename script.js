@@ -1159,7 +1159,7 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
 
     pratosSemana.push(pratoSelecionado);
 
-    resultadoHTML += `<li><strong>${diasUteis[index]}:</strong> ${pratoSelecionado.nome} (${proteina})</li>`;
+    resultadoHTML += `<li><strong>${diasUteis[index]}:</strong> ${pratoSelecionado.nome}</li>`;
 
     for (const [ingrediente, quantidade] of Object.entries(pratoSelecionado.ingredientes)) {
       const quantidadeUnitaria = parseQuantidade(quantidade);
