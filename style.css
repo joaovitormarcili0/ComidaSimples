@@ -1,60 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans:ital,wght@0,300;0,400;1,300&display=swap');
 
-/* ------------------ GERAL / LAYOUT PRINCIPAL ------------------ */
+/* ========== LAYOUT BASE ========== */
 body {
-  background-color: #fdfdfd;
+  background: #fdfdfd;
   font-family: 'Open Sans', sans-serif;
-  color: #333;
-  padding: 60px 20px;
-  line-height: 1.6;
+  color: #222;
+  padding: 56px 0 60px 0;
+  line-height: 1.7;
 }
-
 .container {
   max-width: 900px;
   margin: auto;
-  padding: 40px;
-  background-color: white;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  padding: 38px 26px 48px 26px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 18px rgba(0,0,0,0.05);
   border: 1px solid #eee;
 }
 
-/* ------------------ TITULOS ------------------ */
-h1 {
+/* ========== TITULOS ========== */
+h1, h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 36px;
   font-weight: 700;
+  color: #222;
+  letter-spacing: 0.01em;
+}
+h1 {
+  font-size: 2.2rem;
   text-align: center;
-  margin-bottom: 40px;
-  color: #111;
+  margin-bottom: 36px;
 }
-
 h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #111;
+  font-size: 1.3rem;
+  margin-bottom: 28px;
 }
 
-/* ------------------ FORMULARIO / SELETORES ------------------ */
-form {
-  margin-bottom: 40px;
+/* ========== LINHA SUPERIOR (quantas pessoas e darkmode) ========== */
+.linha-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 30px;
+  flex-wrap: wrap;
 }
-
 .pessoas {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   max-width: 320px;
 }
-
 .pessoas label {
   font-weight: 600;
-  margin-bottom: 0;
   font-size: 15px;
   white-space: nowrap;
+  border-bottom: none !important;
 }
-
 .pessoas input {
   width: 64px;
   padding: 6px 10px;
@@ -63,68 +65,128 @@ form {
   border-radius: 4px;
 }
 
-.instrucao {
-  margin-top: 100px;
-  margin-bottom: 20px;
-  text-align: center;
+/* ========== DARKMODE SWITCHER ========== */
+.darkmode-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+  justify-content: flex-end;
+  line-height: 1;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 18px;
+  vertical-align: middle;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #ddd;
+  border-radius: 18px;
+  transition: background 0.3s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px; width: 14px;
+  left: 2px; bottom: 2px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.10);
+}
+.switch input:checked + .slider {
+  background: #111;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(16px);
+  background: #18191b;
+}
+.darkmode-label {
   font-size: 15px;
+  color: #222;
+  font-weight: 600;
+  margin-left: 8px;
+  font-family: 'Open Sans', sans-serif;
+  user-select: none;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1.1;
+}
+label, .linha-superior label, .linha-superior span, .linha-superior .switch,
+.darkmode-switcher label, .darkmode-switcher span {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+/* ========== INSTRUÇÃO E SELETORES ========== */
+form { margin-bottom: 38px; }
+.instrucao {
+  margin: 48px 0 26px 0;
+  text-align: center;
+  font-size: 1.12em;
   color: #555;
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
+  border-bottom: none !important;
 }
-
 .instrucao p {
   margin: 0;
-  font-size: 18px;
-  color: #555;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
 }
 
-/* ------------------ DIAS DA SEMANA / SELETORES ------------------ */
+/* ========== DIAS DA SEMANA / SELETORES ========== */
 #dias-container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 30px;
+  gap: 10px;
+  margin-bottom: 28px;
 }
-
 .dia {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 18%;
-  padding: 10px 0;
+  padding: 8px 0 12px 0;
 }
-
-label {
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 6px;
+#dias-container label {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 7px;
   color: #555;
-  padding-bottom: 6px;
+  padding-bottom: 7px;
   border-bottom: 1px solid #ccc;
   width: 100%;
   text-align: center;
+  transition: border-color 0.3s;
+  letter-spacing: 0.01em;
 }
-
 select {
   width: 100%;
-  padding: 6px;
-  font-size: 14px;
+  padding: 7px;
+  font-size: 15px;
   border: 1px solid #ccc;
-  background-color: #fff;
-  color: #333;
+  background: #fff;
+  color: #222;
   margin-top: 6px;
+  border-radius: 5px;
 }
 
-/* ------------------ BOTÃO PRINCIPAL ------------------ */
+/* ========== BOTÃO PRINCIPAL ========== */
 button {
   margin-top: 30px;
   width: 100%;
-  background: black;
-  color: white;
+  background: #000;
+  color: #fff;
   border: none;
   padding: 14px;
   font-family: 'Open Sans', sans-serif;
@@ -132,153 +194,244 @@ button {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.3s ease;
+  border-radius: 5px;
+  transition: background 0.3s;
 }
+button:hover { background: #333; }
 
-button:hover {
-  background: #333;
-}
-
-/* ------------------ GRID RESULTADOS ------------------ */
+/* ========== GRID RESULTADOS ========== */
 .grid {
   display: flex;
   gap: 40px;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
-#resultado,
-#compras {
+#resultado, #compras {
   flex: 1 1 400px;
 }
 
-/* ------------------ LISTAS GERAIS ------------------ */
+/* ========== LISTAS GERAIS ========== */
 ul {
   padding-left: 20px;
   margin-top: 20px;
 }
+ul li { margin-bottom: 10px; }
 
-ul li {
-  margin-bottom: 10px;
-}
-
-/* ------------------ RECEITAS / PREPARO ------------------ */
-#preparo {
-  margin-top: 60px;
-}
-
+/* ========== RECEITAS / PREPARO ========== */
+#preparo { margin-top: 60px; }
 .toggle {
   border: none;
-  border-radius: 0;
-  margin-bottom: 36px;
-  background: none;
-  box-shadow: none;
+  border-radius: 12px;
+  background: #f7f7fa;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 14px 0 rgba(0,0,0,0.06);
   padding: 0;
+  transition: box-shadow 0.22s;
 }
-
+.toggle[open] { box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);}
 .toggle summary {
   cursor: pointer;
-  padding: 0 0 12px 0;
-  font-weight: 500;
-  font-size: 21px;
+  padding: 22px 24px 16px 24px;
+  font-weight: 700;
+  font-size: 1.14rem;
   background: none;
   border: none;
   font-family: 'Open Sans', sans-serif;
   color: #222;
-  border-bottom: 2px solid #111;
-  margin-bottom: 6px;
+  border-bottom: 1px solid #bbb;
+  margin-bottom: 0;
   letter-spacing: 0.01em;
-  transition: color 0.2s;
+  outline: none;
+  transition: color 0.18s;
+  user-select: none;
 }
-
-.toggle[open] summary {
-  color: #888;
+.toggle summary::-webkit-details-marker { display: none; }
+.toggle summary:after {
+  content: "▼";
+  float: right;
+  font-size: 0.95em;
+  color: #aaa;
+  transition: transform 0.2s;
 }
-
+.toggle[open] summary:after { content: "▲"; }
+.toggle > *:not(summary) {
+  padding: 0 24px 16px 24px;
+}
 .preparo-ingredientes-titulo {
-  font-size: 15px;
-  font-weight: 500;
-  margin: 26px 0 0 0;
+  font-size: 1.08em;
+  font-weight: 700;
+  margin: 22px 0 15px 0;
   color: #222;
-  font-family: 'Open Sans', sans-serif;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
-
 .preparo-divider {
   border: none;
-  border-bottom: 1.5px solid #e4e4e4;
-  margin: 10px 0 22px 0;
+  border-top: 1px solid #bbb;
+  margin: 26px 0 24px 0;
 }
-
 .preparo-ingredientes-lista {
-  font-size: 15.5px;
+  font-size: 1em;
   color: #222;
-  font-family: 'Open Sans', sans-serif;
-  margin: 0 0 0 0;
+  margin: 0 0 12px 0;
   padding: 0;
   list-style: none;
 }
-
 .preparo-ingredientes-lista li {
-  margin-bottom: 2px;
-  font-size: 15.5px;
-  font-family: inherit;
+  margin-bottom: 8px;
+  font-size: 1em;
   color: #444;
   font-weight: 400;
   letter-spacing: 0.01em;
+  line-height: 1.7;
 }
-
 .preparo-passoapasso-titulo {
-  font-size: 14.2px;
-  font-weight: 500;
+  font-size: 1em;
+  font-weight: 700;
   text-transform: uppercase;
   color: #888;
-  margin: 24px 0 10px 0;
-  letter-spacing: 0.08em;
-  font-family: 'Open Sans', sans-serif;
+  margin: 16px 0 16px 0;
+  letter-spacing: 0.07em;
 }
-
 .preparo-passos {
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   padding: 0;
-  counter-reset: step;
 }
 .preparo-passos li {
-  list-style: none;
-  margin-bottom: 8px;
-  font-size: 15.3px;
-  position: relative;
-  padding-left: 28px;
-  color: #222;
-  font-family: 'Open Sans', sans-serif;
-}
-.preparo-passos li:before {
-  counter-increment: step;
-  content: counter(step) ".";
-  position: absolute;
-  left: 0;
-  color: #888;
-  font-size: 15.3px;
+  list-style: decimal inside;
+  margin-bottom: 11px;
+  font-size: 1em;
+  color: #333;
   font-family: inherit;
-  font-weight: 500;
+  padding-left: 2px;
+  line-height: 1.7;
 }
 
-/* ------------------ RESPONSIVIDADE ------------------ */
+/* ========== INFO NUTRICIONAL ========== */
+.toggle-macros {
+  background: #f7f7fa;
+  border-radius: 9px;
+  margin-bottom: 22px;
+  border: none;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.04);
+  overflow: hidden;
+  padding: 0;
+}
+.toggle-macros summary {
+  font-size: 1.01em;
+  color: #bdbdbd;
+  padding: 13px 22px 8px 22px;
+  font-weight: 700;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+.toggle-macros[open] summary { color: #222; }
+.toggle-macros > *:not(summary) {
+  padding: 0 22px 15px 22px;
+}
+.toggle-macros div {
+  color: #888;
+  font-size: 1em;
+  line-height: 1.7;
+  padding: 8px 0 0 0;
+}
+
+/* ========== DARK MODE PREMIUM ========== */
+body.darkmode {
+  background: #18191b;
+  color: #fff;
+}
+body.darkmode .container {
+  background: #23242a;
+  border-color: #232323;
+  box-shadow: 0 2px 32px rgba(0,0,0,0.22);
+}
+body.darkmode h1, 
+body.darkmode h2,
+body.darkmode .preparo-passoapasso-titulo,
+body.darkmode .instrucao,
+body.darkmode .instrucao p {
+  color: #fff !important;
+}
+body.darkmode #dias-container label {
+  color: #fff !important;
+  border-bottom: 1px solid #fff !important;
+}
+body.darkmode .toggle,
+body.darkmode .toggle[open],
+body.darkmode .toggle-macros,
+body.darkmode .toggle-macros[open] {
+  background: #191a1d !important;
+  border: none !important;
+  box-shadow: 0 2px 18px 0 rgba(0,0,0,0.18);
+}
+body.darkmode .toggle summary,
+body.darkmode .toggle-macros summary {
+  color: #fff !important;
+  background: none !important;
+  border-bottom: 1px solid #fff !important;
+}
+body.darkmode .toggle[open] summary,
+body.darkmode .toggle-macros[open] summary {
+  color: #bdbdbd !important;
+}
+body.darkmode .preparo-divider {
+  border: none !important;
+  border-top: 1px solid #fff !important;
+  margin: 26px 0 24px 0 !important;
+}
+body.darkmode .preparo-ingredientes-titulo,
+body.darkmode .preparo-passoapasso-titulo,
+body.darkmode .preparo-ingredientes-lista li,
+body.darkmode .preparo-passos li,
+body.darkmode .toggle-macros div {
+  color: #fff !important;
+}
+body.darkmode select,
+body.darkmode input,
+body.darkmode button {
+  background: #222327;
+  color: #fff !important;
+  border-color: #32343b;
+}
+body.darkmode button {
+  background: #18191b;
+  border: 1px solid #222;
+}
+body.darkmode button:hover {
+  background: #232323;
+}
+body.darkmode .slider { background: #444; }
+body.darkmode .switch input:checked + .slider { background: #fafafa; }
+body.darkmode .switch input:checked + .slider:before { background: #232323; }
+body.darkmode .darkmode-label { color: #fff !important; }
+
+/* Remove underline e borda de labels/spans no darkmode */
+body.darkmode .linha-superior label,
+body.darkmode .linha-superior span,
+body.darkmode .linha-superior .switch,
+body.darkmode .darkmode-switcher label,
+body.darkmode .darkmode-switcher span {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* ========== RESPONSIVO ========== */
 @media (max-width: 700px) {
   .toggle summary, .toggle pre { padding-left: 12px; padding-right: 12px; }
 }
 @media (max-width: 600px) {
-  #dias-container {
-    flex-direction: column;
-  }
-  .dia {
-    width: 100%;
-  }
-  .grid {
-    flex-direction: column;
-  }
-  #resultado,
-  #compras {
-    width: 100%;
+  .container { padding: 15px 2vw 24px 2vw; }
+  .linha-superior { flex-direction: column; align-items: stretch; gap: 16px; }
+  .darkmode-switcher { justify-content: flex-start; margin-top: 10px; }
+  .pessoas { margin-bottom: 12px; }
+  #dias-container { flex-direction: column; }
+  .dia { width: 100%; }
+  .grid { flex-direction: column; }
+  #resultado, #compras { width: 100%; }
+  .toggle, .toggle-macros { padding: 0; }
+  .toggle > *:not(summary), .toggle-macros > *:not(summary) {
+    padding-left: 10px; padding-right: 10px;
   }
 }
