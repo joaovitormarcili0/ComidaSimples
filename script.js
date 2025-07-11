@@ -1,536 +1,1106 @@
 const diasUteis = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
 
 const receitas = {
-  carne: [
-    {
-      nome: "Carne moída com batata",
-      ingredientes: { "Carne moída (g)": 450, "Batata (unid.)": 3, "Cebola (unid.)": 1, "Alho (dente)": 3 },
-      preparo: `1. Descasque e corte as batatas em cubos médios. Reserve.
-2. Em uma panela, aqueça um fio de óleo e refogue a cebola picada até dourar.
-3. Acrescente o alho picado e mexa por 1 minuto.
-4. Adicione a carne moída, tempere com sal e pimenta e refogue até perder a cor avermelhada.
-5. Junte as batatas, misture, adicione água até cobrir e cozinhe em fogo médio com a panela semi-tampada.
-6. Mexa de vez em quando até as batatas ficarem macias e o molho engrossar (cerca de 20 minutos).
-7. Ajuste o sal, finalize com salsinha e sirva quente.`
-    },
-    {
-      nome: "Bife acebolado com arroz e feijão",
-      ingredientes: { "Bife (g)": 450, "Cebola (unid.)": 1, "Arroz (xícara)": 1.5, "Feijão (xícara)": 1.5 },
-      preparo: `1. Tempere os bifes com sal, pimenta e alho. Reserve.
-2. Em uma panela, refogue a cebola picada até começar a dourar.
-3. Frite os bifes em frigideira bem quente, virando para dourar dos dois lados.
-4. Em seguida, retire os bifes e, na mesma frigideira, adicione as cebolas em rodelas. Refogue até ficarem douradas e jogue sobre os bifes.
-5. Prepare o arroz e o feijão conforme de costume.
-6. Sirva os bifes acebolados com arroz e feijão, acompanhados de salada verde.`
-    },
-    {
-      nome: "Carne de panela com legumes",
-      ingredientes: { "Carne de panela (g)": 450, "Batata (unid.)": 3, "Cenoura (unid.)": 2, "Alho (dente)": 3 },
-      preparo: `1. Corte a carne em cubos grandes. Tempere com sal e pimenta.
-2. Em uma panela de pressão, doure os pedaços de carne com um fio de óleo.
-3. Acrescente cebola e alho picados e refogue por 2 minutos.
-4. Adicione batata e cenoura cortadas em pedaços médios, cubra com água e feche a panela.
-5. Cozinhe por 25 minutos após pegar pressão.
-6. Desligue o fogo, espere a pressão sair e abra a panela.
-7. Ajuste os temperos e sirva com arroz ou purê de batata.`
-    },
-    {
-      nome: "Estrogonofe de carne",
-      ingredientes: { "Carne (g)": 450, "Creme de leite (caixa)": 1 },
-      preparo: `1. Corte a carne em tiras ou cubos. Tempere com sal e pimenta.
-2. Em uma panela, aqueça manteiga ou óleo, doure a carne aos poucos e reserve.
-3. Na mesma panela, refogue cebola picada até dourar e adicione a carne novamente.
-4. Acrescente ketchup, mostarda e molho inglês a gosto.
-5. Junte o creme de leite, mexa bem e cozinhe por 5 minutos em fogo baixo.
-6. Sirva com arroz branco e batata palha.`
-    },
-    {
-      nome: "Picadinho de carne com molho madeira",
-      ingredientes: { "Carne picada (g)": 450, "Molho madeira (ml)": 200 },
-      preparo: `1. Corte a carne em cubos pequenos. Tempere com sal e pimenta.
-2. Aqueça uma panela com um fio de óleo, doure a carne, junte cebola picada e refogue.
-3. Acrescente molho madeira, misture bem e deixe cozinhar até encorpar.
-4. Acerte o sal, finalize com salsinha e sirva com arroz ou purê de batata.`
-    },
-    {
-      nome: "Rocambole de carne recheado com queijo",
-      ingredientes: { "Carne moída (g)": 450, "Queijo (g)": 150 },
-      preparo: `1. Misture a carne moída com temperos a gosto, sal e pimenta.
-2. Abra a carne em um plástico-filme, formando um retângulo.
-3. Espalhe queijo ralado ou fatiado por cima e enrole como um rocambole, usando o plástico para ajudar.
-4. Coloque em uma assadeira untada, pincele com azeite e leve ao forno médio (200°C) por cerca de 30-40 minutos.
-5. Fatie e sirva com arroz e salada.`
-    },
-    {
-      nome: "Almôndegas ao sugo",
-      ingredientes: { "Carne moída (g)": 450, "Molho de tomate (ml)": 300 },
-      preparo: `1. Misture a carne moída com alho picado, sal, pimenta, cheiro-verde e um pouco de farinha de rosca.
-2. Modele bolinhas e reserve.
-3. Aqueça um fio de óleo em uma panela, doure as almôndegas de todos os lados.
-4. Adicione molho de tomate, tampe e cozinhe por cerca de 20 minutos em fogo baixo.
-5. Sirva com arroz ou macarrão.`
-    },
-    {
-      nome: "Tiras de carne com pimentão",
-      ingredientes: { "Carne em tiras (g)": 450, "Pimentão (unid.)": 2 },
-      preparo: `1. Corte a carne e o pimentão em tiras finas.
-2. Em uma frigideira grande, aqueça um fio de óleo e doure a carne em fogo alto.
-3. Adicione o pimentão e refogue até ficar levemente macio.
-4. Tempere com sal, pimenta e molho shoyu, se desejar.
-5. Sirva com arroz ou pão.`
-    },
-    {
-      nome: "Carne louca desfiada",
-      ingredientes: { "Carne desfiada (g)": 450, "Cebola (unid.)": 1 },
-      preparo: `1. Cozinhe a carne em panela de pressão com água, sal, folha de louro e pimenta até ficar macia.
-2. Deixe esfriar e desfie a carne.
-3. Em uma panela grande, refogue cebola e pimentão fatiados até ficarem macios.
-4. Adicione a carne desfiada, misture bem, corrija o sal e refogue por mais alguns minutos.
-5. Sirva em sanduíches, com arroz ou como recheio de tortas.`
-    },
-    {
-      nome: "Escondidinho de carne moída",
-      ingredientes: { "Carne moída (g)": 450, "Purê de batata (g)": 500 },
-      preparo: `1. Prepare um purê de batata (cozinhe batatas, amasse, tempere com sal e um pouco de manteiga).
-2. Refogue a carne moída com cebola, alho e temperos a gosto.
-3. Em um refratário, faça uma camada de purê, espalhe a carne refogada por cima e cubra com o restante do purê.
-4. Salpique queijo ralado e leve ao forno médio para gratinar.
-5. Sirva quente.`
-    }
-  ],
-  frango: [
-    {
-      nome: "Frango grelhado com legumes",
-      ingredientes: { "Peito de frango (g)": 450, "Legumes variados (g)": 300 },
-      preparo: `1. Corte o peito de frango em filés e tempere com sal, pimenta, limão e ervas de sua preferência.
-2. Grelhe os filés em uma frigideira antiaderente até dourar dos dois lados.
-3. Cozinhe os legumes no vapor ou na água até ficarem macios.
-4. Sirva o frango acompanhado dos legumes e finalize com azeite.`
-    },
-    {
-      nome: "Estrogonofe de frango",
-      ingredientes: { "Frango em cubos (g)": 450, "Creme de leite (caixa)": 1 },
-      preparo: `1. Corte o frango em cubos, tempere com sal, pimenta e limão.
-2. Em uma panela, doure o frango em um pouco de óleo ou manteiga.
-3. Acrescente cebola picada, refogue, junte ketchup, mostarda e molho de tomate.
-4. Cozinhe por 10 minutos em fogo baixo.
-5. Adicione o creme de leite, misture bem e desligue o fogo.
-6. Sirva com arroz branco e batata palha.`
-    },
-    {
-      nome: "Frango xadrez",
-      ingredientes: { "Frango em cubos (g)": 450, "Pimentão (unid.)": 2 },
-      preparo: `1. Corte o frango em cubos e tempere com sal, pimenta e um pouco de shoyu.
-2. Em uma frigideira, doure o frango em óleo quente.
-3. Acrescente pimentões cortados em cubos e refogue rapidamente.
-4. Adicione molho shoyu e, se desejar, um pouco de amido de milho dissolvido em água para engrossar.
-5. Sirva com arroz branco.`
-    },
-    {
-      nome: "Sobrecoxa assada com batatas",
-      ingredientes: { "Sobrecoxa (g)": 450, "Batata (unid.)": 3 },
-      preparo: `1. Tempere as sobrecoxas com alho, sal, pimenta, limão e ervas.
-2. Disponha as sobrecoxas em uma assadeira junto com batatas cortadas em rodelas grossas.
-3. Regue com azeite e leve ao forno médio (200°C) por 40-50 minutos, virando na metade do tempo.
-4. Sirva com arroz e salada.`
-    },
-    {
-      nome: "Frango desfiado com creme de milho",
-      ingredientes: { "Frango desfiado (g)": 450, "Creme de milho (lata)": 1 },
-      preparo: `1. Cozinhe o peito de frango em água, sal e temperos até ficar macio. Desfie e reserve.
-2. Bata o milho no liquidificador com um pouco de leite até formar um creme.
-3. Refogue cebola e alho em uma panela, acrescente o creme de milho e mexa até engrossar.
-4. Junte o frango desfiado, misture bem e ajuste o sal.
-5. Sirva com arroz e batata palha.`
-    },
-    {
-      nome: "Coxinha da asa assada com limão e alho",
-      ingredientes: { "Coxinha da asa (g)": 450, "Alho (dente)": 3, "Limão (unid.)": 1 },
-      preparo: `1. Tempere as coxinhas da asa com alho picado, suco de limão, sal e pimenta.
-2. Deixe marinar por 20 minutos.
-3. Disponha em uma assadeira e leve ao forno pré-aquecido (200°C) por cerca de 40 minutos, virando na metade do tempo.
-4. Sirva com arroz ou salada.`
-    },
-    {
-      nome: "Frango empanado na frigideira",
-      ingredientes: { "Filé de frango (g)": 450, "Farinha de rosca (g)": 80 },
-      preparo: `1. Tempere os filés de frango com sal, pimenta e limão.
-2. Passe cada filé na farinha de trigo, depois no ovo batido e por fim na farinha de rosca.
-3. Aqueça uma frigideira com óleo e frite os filés até dourar dos dois lados.
-4. Escorra em papel absorvente e sirva.`
-    },
-    {
-      nome: "Frango ao curry com arroz",
-      ingredientes: { "Frango em cubos (g)": 450, "Curry (colher)": 2, "Arroz branco (xícara)": 1.5 },
-      preparo: `1. Corte o frango em cubos, tempere com sal e pimenta.
-2. Doure o frango em uma panela com óleo.
-3. Acrescente curry em pó, mexa bem, junte arroz cru e refogue por alguns minutos.
-4. Adicione água quente, corrija o sal e cozinhe até o arroz e o frango ficarem macios.
-5. Sirva com cheiro-verde.`
-    },
-    {
-      nome: "Frango ao molho de laranja",
-      ingredientes: { "Filé de frango (g)": 450, "Suco de laranja (ml)": 150 },
-      preparo: `1. Tempere os filés de frango com sal, pimenta e alho.
-2. Grelhe os filés em uma frigideira até dourar dos dois lados.
-3. Misture suco de laranja fresco, uma pitada de açúcar e, se desejar, um pouco de mostarda.
-4. Jogue o molho sobre o frango na frigideira, deixe reduzir um pouco e sirva em seguida.
-5. Ótimo com arroz branco ou purê de batata.`
-    },
-    {
-      nome: "Panqueca recheada com frango e requeijão",
-      ingredientes: { "Frango desfiado (g)": 300, "Requeijão (g)": 100, "Massa de panqueca (unid.)": 6 },
-      preparo: `1. Cozinhe e desfie o peito de frango, tempere a gosto.
-2. Misture o frango desfiado com requeijão.
-3. Prepare a massa de panqueca e recheie cada unidade com o frango.
-4. Enrole, disponha em um refratário, cubra com molho de tomate e leve ao forno para aquecer.
-5. Sirva com queijo ralado por cima.`
-    }
-  ],
-  peixe: [
+  // ---------------------- Carnes ----------------------
+carne: [
   {
-    nome: "Filé de tilápia grelhado com arroz",
-    ingredientes: { "Filé de tilápia (g)": 450, "Arroz branco (xícara)": 1.5 },
-    preparo: `1. Tempere os filés de tilápia com limão, sal e pimenta a gosto.
-2. Em uma frigideira antiaderente, aqueça um fio de azeite e grelhe os filés até dourar dos dois lados.
-3. Cozinhe o arroz conforme de costume.
-4. Sirva o peixe acompanhado do arroz branco e de uma salada fresca.`
+    nome: "Picadinho de carne",
+    ingredientes: {
+      "Carne bovina (g)": 400,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 1,
+      "Óleo (ml)": 15,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Corte a carne em cubinhos. Tempere com sal e pimenta-do-reino.
+2. Em uma panela, aqueça o óleo e refogue a cebola e o alho picados.
+3. Adicione a carne e doure bem.
+4. Acrescente o tomate picado, mexa e cozinhe até o molho encorpar.
+5. Finalize com salsinha picada e sirva.
+`
   },
   {
-    nome: "Moqueca de peixe simples",
-    ingredientes: { "Peixe em postas (g)": 450, "Pimentão (unid.)": 2, "Cebola (unid.)": 1, "Leite de coco (ml)": 200 },
-    preparo: `1. Tempere as postas de peixe com sal, limão e pimenta.
-2. Em uma panela, faça camadas de peixe, pimentão, cebola e tomate (opcional).
-3. Regue com leite de coco e azeite de dendê (opcional).
-4. Cozinhe em fogo baixo, panela semi-tampada, por cerca de 20 minutos até o peixe ficar macio.
-5. Finalize com coentro ou cheiro-verde. Sirva com arroz branco.`
+    nome: "Carne de panela",
+    ingredientes: {
+      "Carne bovina (g)": 500,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 1,
+      "Batata (unidade)": 2,
+      "Cenoura (unidade)": 1,
+      "Óleo (ml)": 15,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Cheiro-verde (colher de sopa)": 1
+    },
+    preparo: `
+1. Corte a carne em pedaços grandes e tempere com sal e pimenta.
+2. Aqueça o óleo na panela e doure a carne.
+3. Adicione cebola e alho picados e refogue até dourar.
+4. Junte tomate picado, batatas e cenoura em rodelas.
+5. Cubra com água e cozinhe até os legumes ficarem macios.
+6. Finalize com cheiro-verde picado.
+`
   },
   {
-    nome: "Peixe assado com legumes",
-    ingredientes: { "Filé de peixe (g)": 450, "Batata (unid.)": 3, "Cenoura (unid.)": 2, "Cebola (unid.)": 1 },
-    preparo: `1. Tempere o peixe com sal, limão, ervas e azeite.
-2. Em uma assadeira, coloque o peixe e acrescente batatas, cenouras e cebolas fatiadas ao redor.
-3. Cubra com papel-alumínio e leve ao forno médio (200°C) por 25 minutos.
-4. Retire o papel e asse mais 10 minutos para dourar.
-5. Sirva com arroz e salada.`
+    nome: "Bife acebolado",
+    ingredientes: {
+      "Bife bovino (g)": 400,
+      "Cebola (unidade)": 2,
+      "Alho (dente)": 1,
+      "Óleo (ml)": 15,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Tempere os bifes com sal e pimenta-do-reino.
+2. Em uma frigideira, aqueça o óleo e doure os bifes. Reserve.
+3. Na mesma frigideira, refogue a cebola em rodelas e o alho até caramelizar.
+4. Volte os bifes para a panela, misture tudo e sirva quente.
+`
   },
   {
-    nome: "Iscas de peixe empanado",
-    ingredientes: { "Iscas de peixe (g)": 450, "Farinha de trigo (g)": 80 },
-    preparo: `1. Corte o peixe em tiras e tempere com sal, pimenta e limão.
-2. Passe as tiras na farinha de trigo.
-3. Frite em óleo quente até dourar.
-4. Escorra em papel absorvente e sirva com limão.`
+    nome: "Carne moída refogada",
+    ingredientes: {
+      "Carne moída (g)": 400,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 1,
+      "Óleo (ml)": 10,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Em uma panela, aqueça o óleo e refogue a cebola e o alho picados.
+2. Acrescente a carne moída e refogue até perder a cor crua.
+3. Junte o tomate picado e cozinhe até secar a água.
+4. Tempere com sal, pimenta e finalize com salsinha.
+`
   },
   {
-    nome: "Bolinho de peixe",
-    ingredientes: { "Peixe cozido (g)": 300, "Farinha de trigo (g)": 80 },
-    preparo: `1. Cozinhe o peixe, desfie e misture com temperos, ovo e farinha até dar liga.
-2. Modele bolinhas, empane na farinha e frite em óleo quente até dourar.
-3. Sirva quente como acompanhamento ou petisco.`
+    nome: "Strogonoff de carne",
+    ingredientes: {
+      "Carne em tiras (g)": 400,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 1,
+      "Tomate (unidade)": 1,
+      "Champignon (g)": 80,
+      "Creme de leite (caixa)": 1,
+      "Extrato de tomate (colher de sopa)": 1,
+      "Óleo (ml)": 10,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Mostarda (colher de chá)": 1,
+      "Ketchup (colher de sopa)": 1
+    },
+    preparo: `
+1. Aqueça o óleo e refogue a cebola e o alho picados.
+2. Junte a carne em tiras e doure até secar a água.
+3. Acrescente tomate picado, extrato de tomate, mostarda e ketchup.
+4. Adicione o champignon e misture bem.
+5. Desligue o fogo, junte o creme de leite e acerte o sal e a pimenta.
+`
   },
   {
-    nome: "Peixe ao molho de tomate",
-    ingredientes: { "Filé de peixe (g)": 450, "Molho de tomate (ml)": 200 },
-    preparo: `1. Tempere os filés com sal e limão.
-2. Refogue cebola e alho em azeite, adicione molho de tomate.
-3. Coloque os filés no molho, tampe e cozinhe por 10 minutos.
-4. Sirva com arroz ou purê de batata.`
+    nome: "Almôndegas ao molho",
+    ingredientes: {
+      "Carne moída (g)": 400,
+      "Ovo (unidade)": 1,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Farinha de rosca (colher de sopa)": 2,
+      "Molho de tomate (ml)": 250,
+      "Óleo (ml)": 10,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Misture carne moída, ovo, metade da cebola e um dente de alho picados, farinha de rosca, sal e pimenta.
+2. Faça bolinhas e reserve.
+3. Aqueça o óleo em uma panela, refogue o restante da cebola e alho.
+4. Acrescente as almôndegas, doure levemente e adicione o molho de tomate.
+5. Cozinhe até as almôndegas estarem cozidas, finalize com salsinha.
+`
   },
   {
-    nome: "Peixe ao forno com batata e cebola",
-    ingredientes: { "Filé de peixe (g)": 450, "Batata (unid.)": 3, "Cebola (unid.)": 1 },
-    preparo: `1. Tempere os filés com sal, limão e ervas.
-2. Forre uma assadeira com batatas e cebolas em rodelas.
-3. Coloque o peixe por cima, regue com azeite e cubra com papel-alumínio.
-4. Leve ao forno médio (200°C) por 30 minutos.
-5. Retire o papel e deixe dourar mais 10 minutos.`
+    nome: "Carne ensopada com legumes",
+    ingredientes: {
+      "Carne bovina (g)": 400,
+      "Batata (unidade)": 2,
+      "Cenoura (unidade)": 1,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 1,
+      "Óleo (ml)": 15,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Cheiro-verde (colher de sopa)": 1
+    },
+    preparo: `
+1. Em uma panela, aqueça o óleo e refogue a cebola e o alho.
+2. Adicione a carne em cubos e doure bem.
+3. Junte tomate, batata e cenoura picados.
+4. Cubra com água e cozinhe até a carne e os legumes ficarem macios.
+5. Tempere com sal, pimenta e cheiro-verde.
+`
   },
   {
-    nome: "Torta de peixe de liquidificador",
-    ingredientes: { "Peixe desfiado (g)": 300, "Farinha de trigo (g)": 100 },
-    preparo: `1. Cozinhe e desfie o peixe.
-2. Bata os ingredientes da massa no liquidificador.
-3. Misture o peixe desfiado com temperos.
-4. Em uma forma untada, despeje metade da massa, coloque o recheio e cubra com o restante da massa.
-5. Leve ao forno médio até dourar.`
+    nome: "Carne louca",
+    ingredientes: {
+      "Carne bovina (g)": 500,
+      "Cebola (unidade)": 2,
+      "Pimentão (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 2,
+      "Óleo (ml)": 15,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Vinagre (colher de sopa)": 1,
+      "Cheiro-verde (colher de sopa)": 1
+    },
+    preparo: `
+1. Cozinhe a carne em pedaços grandes até desfiar.
+2. Desfie e reserve.
+3. Aqueça o óleo, refogue cebola, alho, pimentão e tomate picados.
+4. Acrescente a carne desfiada, tempere com sal, pimenta e vinagre.
+5. Finalize com cheiro-verde e sirva.
+`
   },
   {
-    nome: "Arroz com peixe",
-    ingredientes: { "Arroz branco (xícara)": 1.5, "Peixe em cubos (g)": 400 },
-    preparo: `1. Corte o peixe em cubos, tempere com sal e limão.
-2. Refogue o peixe rapidamente com cebola e alho.
-3. Acrescente arroz cru, refogue por mais alguns minutos e adicione água quente.
-4. Cozinhe até o arroz e o peixe ficarem macios.
-5. Finalize com cheiro-verde picado.`
+    nome: "Carne assada com batata",
+    ingredientes: {
+      "Carne bovina (g)": 600,
+      "Batata (unidade)": 3,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 3,
+      "Azeite (ml)": 20,
+      "Sal (g)": 7,
+      "Pimenta-do-reino (g)": 1,
+      "Alecrim (ramo)": 1
+    },
+    preparo: `
+1. Tempere a carne com sal, pimenta, alho picado e alecrim.
+2. Em uma assadeira, coloque a carne, as batatas descascadas e cortadas e a cebola em rodelas.
+3. Regue com azeite, cubra com papel alumínio e leve ao forno médio por 40 minutos.
+4. Retire o papel e asse até dourar.
+`
   },
   {
-    nome: "Peixe frito com farofa e salada",
-    ingredientes: { "Filé de peixe (g)": 450, "Farinha de mandioca (g)": 100 },
-    preparo: `1. Tempere os filés de peixe com limão, sal e pimenta.
-2. Passe na farinha de trigo e frite em óleo quente até dourar.
-3. Prepare a farofa dourando farinha de mandioca na manteiga com temperos.
-4. Sirva o peixe frito acompanhado da farofa e salada fresca.`
+    nome: "Escondidinho de carne",
+    ingredientes: {
+      "Carne moída (g)": 400,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Batata (unidade)": 3,
+      "Leite (ml)": 100,
+      "Manteiga (colher de sopa)": 1,
+      "Sal (g)": 7,
+      "Pimenta-do-reino (g)": 1,
+      "Mussarela (g)": 80
+    },
+    preparo: `
+1. Cozinhe as batatas e amasse-as, fazendo um purê com leite, manteiga e sal.
+2. Refogue a carne moída com cebola, alho, sal e pimenta.
+3. Em um refratário, coloque metade do purê, toda a carne e cubra com o restante do purê.
+4. Polvilhe a mussarela ralada e leve ao forno para gratinar.
+`
   }
 ],
+// ---------------------- Frango ----------------------
+// ---------------------- Frango ----------------------
+frango: [
+  {
+    nome: "Frango grelhado com legumes",
+    ingredientes: {
+      "Filé de peito de frango (g)": 400,
+      "Limão (unidade)": 1,
+      "Alho (dente)": 2,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Azeite (ml)": 15,
+      "Abobrinha (unidade)": 1,
+      "Cenoura (unidade)": 1,
+      "Brócolis (xícara)": 1
+    },
+    preparo: `
+1. Tempere os filés de frango com suco de limão, alho picado, sal e pimenta.
+2. Aqueça metade do azeite e grelhe o frango até dourar dos dois lados.
+3. Em outra panela, aqueça o restante do azeite e refogue abobrinha, cenoura em rodelas e brócolis até ficarem macios.
+4. Sirva o frango acompanhado dos legumes refogados.
+`
+  },
+  {
+    nome: "Frango ao molho de tomate",
+    ingredientes: {
+      "Peito de frango (g)": 400,
+      "Tomate (unidade)": 2,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Óleo (ml)": 10,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Cheiro-verde (colher de sopa)": 1
+    },
+    preparo: `
+1. Corte o frango em cubos e tempere com sal e pimenta.
+2. Em uma panela, aqueça o óleo e refogue cebola e alho picados.
+3. Junte o frango e doure bem.
+4. Acrescente os tomates picados e cozinhe até formar um molho espesso.
+5. Finalize com cheiro-verde e sirva.
+`
+  },
+  {
+    nome: "Frango ensopado com batatas",
+    ingredientes: {
+      "Coxa e sobrecoxa de frango (g)": 500,
+      "Batata (unidade)": 3,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 1,
+      "Óleo (ml)": 15,
+      "Sal (g)": 7,
+      "Pimenta-do-reino (g)": 1,
+      "Cheiro-verde (colher de sopa)": 1
+    },
+    preparo: `
+1. Tempere o frango com sal e pimenta.
+2. Aqueça o óleo em uma panela, doure o frango e retire.
+3. Refogue cebola, alho e tomate picados no mesmo óleo.
+4. Volte o frango, adicione batatas em cubos e cubra com água.
+5. Cozinhe até a batata ficar macia e finalize com cheiro-verde.
+`
+  },
+  {
+    nome: "Frango xadrez",
+    ingredientes: {
+      "Peito de frango (g)": 400,
+      "Pimentão vermelho (unidade)": 1,
+      "Pimentão verde (unidade)": 1,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 1,
+      "Molho shoyu (colher de sopa)": 3,
+      "Amido de milho (colher de chá)": 1,
+      "Óleo (ml)": 10,
+      "Sal (g)": 4,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Corte o frango em cubos e tempere com sal e pimenta.
+2. Dissolva o amido no shoyu e reserve.
+3. Em uma panela, aqueça o óleo e doure o frango.
+4. Adicione os pimentões e a cebola em cubos, refogue rapidamente.
+5. Acrescente o molho shoyu com amido, mexa até engrossar e sirva.
+`
+  },
+  {
+    nome: "Frango ao curry",
+    ingredientes: {
+      "Peito de frango (g)": 400,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Leite de coco (ml)": 200,
+      "Curry em pó (colher de chá)": 1,
+      "Óleo (ml)": 10,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Corte o frango em cubos e tempere com sal e pimenta.
+2. Em uma panela, aqueça o óleo e refogue cebola e alho picados.
+3. Junte o frango e doure bem.
+4. Acrescente o curry e misture.
+5. Adicione o leite de coco e cozinhe até engrossar.
+6. Finalize com salsinha picada.
+`
+  },
+  {
+    nome: "Strogonoff de frango",
+    ingredientes: {
+      "Peito de frango (g)": 400,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 1,
+      "Tomate (unidade)": 1,
+      "Champignon (g)": 80,
+      "Creme de leite (caixa)": 1,
+      "Extrato de tomate (colher de sopa)": 1,
+      "Óleo (ml)": 10,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Mostarda (colher de chá)": 1,
+      "Ketchup (colher de sopa)": 1
+    },
+    preparo: `
+1. Em uma panela, aqueça o óleo e refogue cebola e alho picados.
+2. Acrescente o frango em tiras e doure até perder o líquido.
+3. Adicione tomate picado, extrato de tomate, mostarda e ketchup.
+4. Junte o champignon fatiado e misture.
+5. Desligue o fogo e misture o creme de leite.
+6. Ajuste o sal e a pimenta.
+`
+  },
+  {
+    nome: "Frango ao forno com batatas",
+    ingredientes: {
+      "Coxa e sobrecoxa de frango (g)": 600,
+      "Batata (unidade)": 3,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 3,
+      "Limão (unidade)": 1,
+      "Azeite (ml)": 20,
+      "Sal (g)": 7,
+      "Pimenta-do-reino (g)": 1,
+      "Alecrim (ramo)": 1
+    },
+    preparo: `
+1. Tempere o frango com sal, pimenta, alho, limão e alecrim.
+2. Em uma assadeira, coloque o frango e as batatas descascadas em rodelas.
+3. Regue com azeite, cubra com papel alumínio e asse em forno médio por 40 minutos.
+4. Retire o papel e asse até dourar.
+`
+  },
+  {
+  nome: "Frango ao molho mostarda",
+  ingredientes: {
+    "Peito de frango (g)": 400,
+    "Mostarda (colher de sopa)": 1,
+    "Creme de leite (caixa)": 1,
+    "Cebola (unidade)": 1,
+    "Alho (dente)": 1,
+    "Óleo (ml)": 10,
+    "Sal (g)": 5,
+    "Pimenta-do-reino (g)": 1,
+    "Salsinha (colher de sopa)": 1
+  },
+  preparo: `
+1. Corte o frango em cubos e tempere com sal e pimenta.
+2. Em uma panela, aqueça o óleo e refogue a cebola e o alho picados.
+3. Junte o frango e doure até ficar bem cozido.
+4. Acrescente a mostarda, misture e depois adicione o creme de leite.
+5. Cozinhe por mais 3 minutos em fogo baixo e finalize com salsinha.
+`
+},
+  {
+    nome: "Frango ao creme de milho",
+    ingredientes: {
+      "Peito de frango (g)": 400,
+      "Milho verde (lata)": 1,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 1,
+      "Creme de leite (caixa)": 1,
+      "Óleo (ml)": 10,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Tempere o frango com sal e pimenta e corte em cubos.
+2. Em uma panela, aqueça o óleo e refogue cebola e alho picados.
+3. Acrescente o frango e doure bem.
+4. Bata o milho com o creme de leite no liquidificador e despeje na panela.
+5. Cozinhe até engrossar e finalize com salsinha.
+`
+  },
+  {
+    nome: "Frango cozido com cenoura",
+    ingredientes: {
+      "Coxa e sobrecoxa de frango (g)": 500,
+      "Cenoura (unidade)": 2,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Óleo (ml)": 10,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Cheiro-verde (colher de sopa)": 1
+    },
+    preparo: `
+1. Tempere o frango com sal e pimenta.
+2. Aqueça o óleo em uma panela, doure o frango e retire.
+3. Refogue cebola e alho picados, volte o frango e acrescente as cenouras em rodelas.
+4. Cubra com água e cozinhe até o frango e a cenoura ficarem macios.
+5. Finalize com cheiro-verde.
+`
+  }
+],
+
+// ---------------------- Peixe ----------------------
 peixe: [
-  {
-    nome: "Filé de tilápia grelhado com arroz",
-    ingredientes: { "Filé de tilápia (g)": 450, "Arroz branco (xícara)": 1.5 },
-    preparo: `1. Tempere os filés de tilápia com limão, sal e pimenta a gosto.
-2. Em uma frigideira antiaderente, aqueça um fio de azeite e grelhe os filés até dourar dos dois lados.
-3. Cozinhe o arroz conforme de costume.
-4. Sirva o peixe acompanhado do arroz branco e de uma salada fresca.`
-  },
-  {
+    {
     nome: "Moqueca de peixe simples",
-    ingredientes: { "Peixe em postas (g)": 450, "Pimentão (unid.)": 2, "Cebola (unid.)": 1, "Leite de coco (ml)": 200 },
-    preparo: `1. Tempere as postas de peixe com sal, limão e pimenta.
-2. Em uma panela, faça camadas de peixe, pimentão, cebola e tomate (opcional).
-3. Regue com leite de coco e azeite de dendê (opcional).
-4. Cozinhe em fogo baixo, panela semi-tampada, por cerca de 20 minutos até o peixe ficar macio.
-5. Finalize com coentro ou cheiro-verde. Sirva com arroz branco.`
+    ingredientes: {
+      "Filé de peixe (g)": 400,
+      "Cebola (unidade)": 1,
+      "Tomate (unidade)": 2,
+      "Pimentão (unidade)": 1,
+      "Alho (dente)": 2,
+      "Leite de coco (ml)": 200,
+      "Azeite de dendê (ml)": 20,
+      "Coentro (colher de sopa)": 1,
+      "Óleo (ml)": 10,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Tempere o peixe com sal e pimenta. Reserve.
+2. Em uma panela, refogue cebola, alho, tomate e pimentão picados no óleo.
+3. Coloque os filés por cima, junte o leite de coco e o azeite de dendê.
+4. Cozinhe em fogo baixo até o peixe ficar macio.
+5. Finalize com coentro e sirva com arroz.
+`
   },
   {
     nome: "Peixe assado com legumes",
-    ingredientes: { "Filé de peixe (g)": 450, "Batata (unid.)": 3, "Cenoura (unid.)": 2, "Cebola (unid.)": 1 },
-    preparo: `1. Tempere o peixe com sal, limão, ervas e azeite.
-2. Em uma assadeira, coloque o peixe e acrescente batatas, cenouras e cebolas fatiadas ao redor.
-3. Cubra com papel-alumínio e leve ao forno médio (200°C) por 25 minutos.
-4. Retire o papel e asse mais 10 minutos para dourar.
-5. Sirva com arroz e salada.`
+    ingredientes: {
+      "Filé de peixe (g)": 400,
+      "Batata (unidade)": 2,
+      "Cenoura (unidade)": 1,
+      "Cebola (unidade)": 1,
+      "Pimentão (unidade)": 1,
+      "Tomate (unidade)": 1,
+      "Azeite (ml)": 20,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Limão (unidade)": 1,
+      "Alecrim (ramo)": 1
+    },
+    preparo: `
+1. Tempere o peixe com sal, pimenta e suco de limão.
+2. Em um refratário, distribua os legumes fatiados e coloque os filés por cima.
+3. Regue tudo com azeite e alecrim.
+4. Cubra com papel alumínio e asse em forno médio por 30 minutos.
+5. Retire o papel e asse até dourar.
+`
   },
   {
-    nome: "Iscas de peixe empanado",
-    ingredientes: { "Iscas de peixe (g)": 450, "Farinha de trigo (g)": 80 },
-    preparo: `1. Corte o peixe em tiras e tempere com sal, pimenta e limão.
-2. Passe as tiras na farinha de trigo.
-3. Frite em óleo quente até dourar.
-4. Escorra em papel absorvente e sirva com limão.`
-  },
-  {
-    nome: "Bolinho de peixe",
-    ingredientes: { "Peixe cozido (g)": 300, "Farinha de trigo (g)": 80 },
-    preparo: `1. Cozinhe o peixe, desfie e misture com temperos, ovo e farinha até dar liga.
-2. Modele bolinhas, empane na farinha e frite em óleo quente até dourar.
-3. Sirva quente como acompanhamento ou petisco.`
+    nome: "Filé de peixe grelhado",
+    ingredientes: {
+      "Filé de peixe (g)": 400,
+      "Limão (unidade)": 1,
+      "Alho (dente)": 1,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Azeite (ml)": 10
+    },
+    preparo: `
+1. Tempere os filés de peixe com limão, sal, pimenta e alho picado.
+2. Aqueça uma frigideira com azeite e grelhe os filés até dourar ambos os lados.
+3. Sirva com salada e arroz.
+`
   },
   {
     nome: "Peixe ao molho de tomate",
-    ingredientes: { "Filé de peixe (g)": 450, "Molho de tomate (ml)": 200 },
-    preparo: `1. Tempere os filés com sal e limão.
-2. Refogue cebola e alho em azeite, adicione molho de tomate.
-3. Coloque os filés no molho, tampe e cozinhe por 10 minutos.
-4. Sirva com arroz ou purê de batata.`
+    ingredientes: {
+      "Filé de peixe (g)": 400,
+      "Tomate (unidade)": 3,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Óleo (ml)": 10,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Cheiro-verde (colher de sopa)": 1
+    },
+    preparo: `
+1. Tempere o peixe com sal e pimenta.
+2. Refogue cebola e alho no óleo até dourar.
+3. Junte tomate picado e cozinhe até formar um molho.
+4. Acrescente os filés de peixe ao molho e cozinhe em fogo baixo até ficarem macios.
+5. Finalize com cheiro-verde picado.
+`
   },
   {
-    nome: "Peixe ao forno com batata e cebola",
-    ingredientes: { "Filé de peixe (g)": 450, "Batata (unid.)": 3, "Cebola (unid.)": 1 },
-    preparo: `1. Tempere os filés com sal, limão e ervas.
-2. Forre uma assadeira com batatas e cebolas em rodelas.
-3. Coloque o peixe por cima, regue com azeite e cubra com papel-alumínio.
-4. Leve ao forno médio (200°C) por 30 minutos.
-5. Retire o papel e deixe dourar mais 10 minutos.`
+    nome: "Peixe empanado",
+    ingredientes: {
+      "Filé de peixe (g)": 400,
+      "Ovo (unidade)": 1,
+      "Farinha de trigo (xícara)": 0.5,
+      "Farinha de rosca (xícara)": 0.5,
+      "Alho (dente)": 1,
+      "Limão (unidade)": 1,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Óleo (ml)": 30
+    },
+    preparo: `
+1. Tempere o peixe com alho picado, limão, sal e pimenta.
+2. Passe os filés na farinha de trigo, depois no ovo batido e em seguida na farinha de rosca.
+3. Frite em óleo quente até dourar ou asse em forno médio até ficar crocante.
+`
   },
   {
-    nome: "Torta de peixe de liquidificador",
-    ingredientes: { "Peixe desfiado (g)": 300, "Farinha de trigo (g)": 100 },
-    preparo: `1. Cozinhe e desfie o peixe.
-2. Bata os ingredientes da massa no liquidificador.
-3. Misture o peixe desfiado com temperos.
-4. Em uma forma untada, despeje metade da massa, coloque o recheio e cubra com o restante da massa.
-5. Leve ao forno médio até dourar.`
+    nome: "Peixe ao forno com batatas",
+    ingredientes: {
+      "Filé de peixe (g)": 400,
+      "Batata (unidade)": 2,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Limão (unidade)": 1,
+      "Azeite (ml)": 20,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Tomate (unidade)": 1,
+      "Cheiro-verde (colher de sopa)": 1
+    },
+    preparo: `
+1. Tempere o peixe com limão, sal e pimenta.
+2. Em uma assadeira, faça uma cama com as batatas em rodelas, cebola, alho e tomate fatiados.
+3. Coloque o peixe por cima, regue com azeite.
+4. Cubra com papel alumínio e asse em forno médio por 30 minutos.
+5. Retire o papel, asse mais 10 minutos e finalize com cheiro-verde.
+`
   },
   {
-    nome: "Arroz com peixe",
-    ingredientes: { "Arroz branco (xícara)": 1.5, "Peixe em cubos (g)": 400 },
-    preparo: `1. Corte o peixe em cubos, tempere com sal e limão.
-2. Refogue o peixe rapidamente com cebola e alho.
-3. Acrescente arroz cru, refogue por mais alguns minutos e adicione água quente.
-4. Cozinhe até o arroz e o peixe ficarem macios.
-5. Finalize com cheiro-verde picado.`
+    nome: "Peixe ensopado",
+    ingredientes: {
+      "Filé de peixe (g)": 400,
+      "Cebola (unidade)": 1,
+      "Tomate (unidade)": 2,
+      "Pimentão (unidade)": 1,
+      "Alho (dente)": 2,
+      "Óleo (ml)": 10,
+      "Água (ml)": 200,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Cheiro-verde (colher de sopa)": 1
+    },
+    preparo: `
+1. Refogue cebola, alho, tomate e pimentão no óleo até murchar.
+2. Junte o peixe, adicione água, sal e pimenta.
+3. Cozinhe até o peixe ficar macio e o caldo engrossar levemente.
+4. Finalize com cheiro-verde.
+`
   },
   {
-    nome: "Peixe frito com farofa e salada",
-    ingredientes: { "Filé de peixe (g)": 450, "Farinha de mandioca (g)": 100 },
-    preparo: `1. Tempere os filés de peixe com limão, sal e pimenta.
-2. Passe na farinha de trigo e frite em óleo quente até dourar.
-3. Prepare a farofa dourando farinha de mandioca na manteiga com temperos.
-4. Sirva o peixe frito acompanhado da farofa e salada fresca.`
+    nome: "Peixe ao leite de coco",
+    ingredientes: {
+      "Filé de peixe (g)": 400,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 1,
+      "Leite de coco (ml)": 200,
+      "Azeite (ml)": 15,
+      "Limão (unidade)": 1,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Coentro (colher de sopa)": 1
+    },
+    preparo: `
+1. Tempere o peixe com limão, sal e pimenta.
+2. Refogue cebola e alho picados no azeite.
+3. Acrescente o peixe e doure levemente.
+4. Junte o leite de coco e cozinhe em fogo baixo até engrossar levemente.
+5. Finalize com coentro fresco.
+`
+  },
+  {
+    nome: "Moqueca de tilápia",
+    ingredientes: {
+      "Filé de tilápia (g)": 400,
+      "Cebola (unidade)": 1,
+      "Pimentão (unidade)": 1,
+      "Tomate (unidade)": 2,
+      "Alho (dente)": 2,
+      "Leite de coco (ml)": 200,
+      "Azeite de dendê (ml)": 15,
+      "Coentro (colher de sopa)": 1,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Óleo (ml)": 10
+    },
+    preparo: `
+1. Tempere o peixe com sal e pimenta.
+2. Em uma panela, refogue cebola, alho, tomate e pimentão em óleo.
+3. Adicione os filés de tilápia, cubra com leite de coco e azeite de dendê.
+4. Cozinhe em fogo baixo até o peixe cozinhar bem.
+5. Finalize com coentro fresco.
+`
+  },
+  {
+    nome: "Peixe ao molho de ervas",
+    ingredientes: {
+      "Filé de peixe (g)": 400,
+      "Alho (dente)": 1,
+      "Limão (unidade)": 1,
+      "Salsinha (colher de sopa)": 1,
+      "Cebolinha (colher de sopa)": 1,
+      "Azeite (ml)": 20,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Tempere o peixe com sal, pimenta, alho e limão.
+2. Grelhe o peixe em uma frigideira com azeite.
+3. Misture salsinha e cebolinha picadas e sirva sobre o peixe.
+`
   }
 ],
+// ---------------------- Vegetariano ----------------------
 vegetariano: [
   {
+    nome: "Moqueca de palmito",
+    ingredientes: {
+      "Palmito (g)": 200,
+      "Leite de coco (ml)": 200,
+      "Cebola (unidade)": 1,
+      "Tomate (unidade)": 2,
+      "Pimentão (unidade)": 1,
+      "Alho (dente)": 2,
+      "Azeite de dendê (ml)": 10,
+      "Azeite (ml)": 10,
+      "Cheiro-verde (colher de sopa)": 1,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Corte o palmito em rodelas e reserve.
+2. Em uma panela, aqueça o azeite e refogue cebola, alho, pimentão e tomate picados.
+3. Junte o palmito, o leite de coco, o azeite de dendê e tempere com sal e pimenta.
+4. Cozinhe por 10 minutos em fogo baixo e finalize com cheiro-verde.
+`
+  },
+  {
     nome: "Omelete de legumes",
-    ingredientes: { "Ovos (unid.)": 6, "Legumes variados (g)": 200 },
-    preparo: `1. Bata os ovos em uma tigela e tempere com sal e pimenta.
-2. Misture legumes ralados ou picados e queijo ralado, se desejar.
-3. Aqueça uma frigideira antiaderente com um fio de azeite.
-4. Despeje a mistura e cozinhe em fogo baixo até dourar embaixo.
-5. Vire com cuidado para dourar o outro lado. Sirva quente.`
+    ingredientes: {
+      "Ovo (unidade)": 3,
+      "Cenoura (unidade)": 1,
+      "Abobrinha (unidade)": 1,
+      "Tomate (unidade)": 1,
+      "Cebola (unidade)": 0.5,
+      "Salsinha (colher de sopa)": 1,
+      "Azeite (ml)": 10,
+      "Sal (g)": 4,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Bata os ovos e tempere com sal e pimenta.
+2. Aqueça o azeite e refogue cebola, cenoura e abobrinha picadas.
+3. Junte o tomate picado, misture e despeje os ovos batidos.
+4. Cozinhe em fogo baixo até firmar.
+5. Finalize com salsinha e sirva.
+`
   },
   {
-    nome: "Macarrão ao pesto",
-    ingredientes: { "Macarrão (g)": 300, "Molho pesto (colher)": 6 },
-    preparo: `1. Cozinhe o macarrão conforme instruções da embalagem.
-2. Escorra e misture imediatamente ao molho pesto.
-3. Sirva com queijo parmesão ralado e pimenta-do-reino moída na hora.`
-  },
-  {
-    nome: "Risoto de cogumelos",
-    ingredientes: { "Arroz arbório (xícara)": 1.5, "Cogumelos (g)": 200 },
-    preparo: `1. Refogue cebola e alho em azeite, junte os cogumelos fatiados e refogue até murchar.
-2. Acrescente o arroz arbório e refogue por 2 minutos.
-3. Adicione caldo de legumes aos poucos, mexendo sempre, até o arroz ficar cremoso e al dente.
-4. Finalize com queijo parmesão e salsinha. Sirva imediatamente.`
+    nome: "Arroz integral com legumes",
+    ingredientes: {
+      "Arroz integral (xícara)": 1,
+      "Cenoura (unidade)": 1,
+      "Abobrinha (unidade)": 1,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 1,
+      "Óleo (ml)": 10,
+      "Água (ml)": 400,
+      "Sal (g)": 5,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Pique os legumes em cubos pequenos.
+2. Em uma panela, refogue cebola e alho no óleo.
+3. Junte arroz, cenoura e abobrinha e refogue.
+4. Adicione água, tempere com sal e cozinhe até secar.
+5. Finalize com salsinha.
+`
   },
   {
     nome: "Lasanha de berinjela",
-    ingredientes: { "Berinjela (unid.)": 2, "Molho de tomate (ml)": 300, "Queijo (g)": 150 },
-    preparo: `1. Corte a berinjela em fatias finas, salpique sal e deixe descansar 10 minutos.
-2. Grelhe as fatias até dourar levemente.
-3. Monte a lasanha intercalando camadas de molho de tomate, berinjela e queijo em um refratário.
-4. Finalize com queijo e leve ao forno para gratinar.
-5. Sirva quente.`
+    ingredientes: {
+      "Berinjela (unidade)": 2,
+      "Molho de tomate (ml)": 300,
+      "Mussarela (g)": 100,
+      "Parmesão ralado (g)": 20,
+      "Azeite (ml)": 10,
+      "Sal (g)": 4,
+      "Pimenta-do-reino (g)": 1,
+      "Orégano (colher de chá)": 1
+    },
+    preparo: `
+1. Corte as berinjelas em fatias e tempere com sal.
+2. Grelhe as fatias em uma frigideira com azeite.
+3. Em um refratário, monte camadas de berinjela, molho de tomate e mussarela.
+4. Repita as camadas e finalize com parmesão ralado e orégano.
+5. Leve ao forno para gratinar por 15 minutos.
+`
   },
   {
-    nome: "Quibe de abóbora com ricota",
-    ingredientes: { "Abóbora (g)": 300, "Ricota (g)": 150 },
-    preparo: `1. Cozinhe a abóbora, amasse e misture com ricota esfarelada, hortelã e temperos.
-2. Adicione trigo para quibe hidratado, misture até dar liga.
-3. Espalhe a massa em uma assadeira untada, regue com azeite e leve ao forno médio até dourar.
-4. Sirva quente ou frio.`
+    nome: "Grão-de-bico ao curry",
+    ingredientes: {
+      "Grão-de-bico cozido (xícara)": 2,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 2,
+      "Curry em pó (colher de chá)": 1,
+      "Leite de coco (ml)": 100,
+      "Azeite (ml)": 10,
+      "Sal (g)": 5,
+      "Coentro (colher de sopa)": 1
+    },
+    preparo: `
+1. Refogue cebola e alho picados no azeite.
+2. Acrescente o tomate picado e refogue até murchar.
+3. Junte o grão-de-bico, curry, sal e leite de coco.
+4. Cozinhe por 5 minutos em fogo baixo.
+5. Finalize com coentro picado.
+`
   },
   {
-    nome: "Torta de legumes de liquidificador",
-    ingredientes: { "Legumes variados (g)": 200, "Farinha de trigo (g)": 100 },
-    preparo: `1. Bata no liquidificador ovos, leite, óleo, farinha e fermento até formar uma massa.
-2. Misture legumes variados já cozidos ou refogados à massa.
-3. Despeje em uma forma untada e asse em forno médio até dourar.
-4. Espere amornar antes de cortar.`
+    nome: "Panqueca de espinafre",
+    ingredientes: {
+      "Ovo (unidade)": 2,
+      "Leite (ml)": 120,
+      "Farinha de trigo (xícara)": 0.5,
+      "Espinafre (maço)": 0.5,
+      "Mussarela (g)": 60,
+      "Sal (g)": 4,
+      "Pimenta-do-reino (g)": 1,
+      "Azeite (ml)": 5
+    },
+    preparo: `
+1. Bata os ovos com o leite e a farinha.
+2. Junte o espinafre cozido e picado, tempere com sal e pimenta.
+3. Em uma frigideira untada com azeite, faça as panquecas.
+4. Recheie com mussarela, enrole e leve ao forno para gratinar.
+`
   },
   {
-    nome: "Panqueca de espinafre e ricota",
-    ingredientes: { "Espinafre (maço)": 1, "Ricota (g)": 120, "Massa de panqueca (unid.)": 6 },
-    preparo: `1. Refogue espinafre em azeite até murchar, escorra o excesso de água e pique.
-2. Misture com ricota esfarelada, tempere com sal, noz-moscada e pimenta.
-3. Prepare a massa das panquecas e recheie com a mistura de espinafre e ricota.
-4. Enrole, cubra com molho de tomate e leve ao forno para aquecer.
-5. Sirva com queijo ralado.`
+    nome: "Escondidinho de legumes",
+    ingredientes: {
+      "Batata (unidade)": 3,
+      "Cenoura (unidade)": 1,
+      "Abobrinha (unidade)": 1,
+      "Leite (ml)": 80,
+      "Manteiga (colher de sopa)": 1,
+      "Azeite (ml)": 10,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 1,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Mussarela (g)": 60
+    },
+    preparo: `
+1. Cozinhe as batatas e faça um purê com leite, manteiga, sal e pimenta.
+2. Refogue cenoura, abobrinha, cebola e alho picados no azeite até dourar.
+3. Em um refratário, monte uma camada de purê, uma de legumes e cubra com o restante do purê.
+4. Polvilhe mussarela e leve ao forno para gratinar.
+`
   },
   {
-    nome: "Legumes assados com ervas",
-    ingredientes: { "Legumes variados (g)": 300, "Ervas finas (colher)": 1 },
-    preparo: `1. Corte legumes como cenoura, batata, abobrinha, brócolis em pedaços médios.
-2. Tempere com azeite, sal, pimenta e ervas finas.
-3. Disponha em uma assadeira e leve ao forno médio (200°C) até dourar (cerca de 35 minutos), mexendo na metade do tempo.
-4. Sirva como prato principal ou acompanhamento.`
+    nome: "Caponata de legumes",
+    ingredientes: {
+      "Berinjela (unidade)": 1,
+      "Abobrinha (unidade)": 1,
+      "Pimentão (unidade)": 1,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 2,
+      "Azeitona (g)": 30,
+      "Azeite (ml)": 30,
+      "Vinagre (colher de sopa)": 1,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Orégano (colher de chá)": 1
+    },
+    preparo: `
+1. Corte os legumes em cubos pequenos.
+2. Misture com azeitona, azeite, vinagre, sal, pimenta e orégano.
+3. Espalhe em uma assadeira e leve ao forno por 30 minutos, mexendo na metade do tempo.
+4. Sirva quente ou fria.
+`
   },
   {
-    nome: "Escondidinho de mandioquinha e cogumelos",
-    ingredientes: { "Mandioquinha (g)": 300, "Cogumelos (g)": 150 },
-    preparo: `1. Cozinhe a mandioquinha, amasse e tempere com sal, azeite e noz-moscada para fazer um purê.
-2. Refogue cogumelos fatiados com alho, sal e pimenta.
-3. Em um refratário, faça uma camada de purê, depois os cogumelos refogados e cubra com mais purê.
-4. Leve ao forno para aquecer e dourar levemente.
-5. Sirva quente.`
+    nome: "Arroz de forno vegetariano",
+    ingredientes: {
+      "Arroz cozido (xícara)": 2,
+      "Cenoura (unidade)": 1,
+      "Milho verde (lata)": 0.5,
+      "Ervilha (lata)": 0.5,
+      "Tomate (unidade)": 1,
+      "Mussarela (g)": 80,
+      "Parmesão ralado (g)": 20,
+      "Leite (ml)": 50,
+      "Ovo (unidade)": 1,
+      "Salsinha (colher de sopa)": 1,
+      "Sal (g)": 4,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Misture o arroz cozido, cenoura ralada, milho, ervilha, tomate e metade da mussarela.
+2. Bata o ovo com leite, sal e pimenta e misture ao arroz.
+3. Coloque em um refratário, cubra com o restante da mussarela e parmesão.
+4. Leve ao forno até gratinar.
+`
   },
   {
-    nome: "Moqueca de banana-da-terra",
-    ingredientes: { "Banana-da-terra (unid.)": 3, "Leite de coco (ml)": 200 },
-    preparo: `1. Corte as bananas-da-terra em rodelas e tempere com sal, limão e pimenta.
-2. Em uma panela, faça camadas de banana, tomate e cebola fatiados.
-3. Regue com leite de coco, azeite de dendê (opcional) e cozinhe em fogo baixo por cerca de 15 minutos.
-4. Finalize com cheiro-verde ou coentro.
-5. Sirva com arroz branco.`
+    nome: "Salada de grãos e legumes",
+    ingredientes: {
+      "Grão-de-bico cozido (xícara)": 1,
+      "Lentilha cozida (xícara)": 1,
+      "Cenoura (unidade)": 1,
+      "Tomate (unidade)": 1,
+      "Cebola (unidade)": 0.5,
+      "Salsinha (colher de sopa)": 1,
+      "Azeite (ml)": 15,
+      "Limão (unidade)": 1,
+      "Sal (g)": 4,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Misture o grão-de-bico e a lentilha já cozidos com cenoura ralada, tomate e cebola picados.
+2. Tempere com azeite, limão, sal, pimenta e salsinha.
+3. Sirva gelada.
+`
   }
 ],
+// ---------------------- Vegano ----------------------
 vegano: [
   {
-    nome: "Grão-de-bico com legumes",
-    ingredientes: { "Grão-de-bico cozido (xícara)": 2, "Legumes variados (g)": 200 },
-    preparo: `1. Deixe o grão-de-bico de molho por 8 horas, cozinhe até ficar macio e escorra.
-2. Em uma panela, refogue alho e cebola, junte os legumes picados e refogue até ficarem al dente.
-3. Acrescente o grão-de-bico, tempere com sal, pimenta e cheiro-verde.
-4. Sirva como prato principal ou acompanhamento.`
+    nome: "Grão-de-bico ao curry",
+    ingredientes: {
+      "Grão-de-bico cozido (xícara)": 2,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 2,
+      "Curry em pó (colher de chá)": 1,
+      "Leite de coco (ml)": 100,
+      "Azeite (ml)": 10,
+      "Sal (g)": 5,
+      "Coentro (colher de sopa)": 1
+    },
+    preparo: `
+1. Refogue a cebola e o alho picados no azeite.
+2. Junte o tomate e refogue até murchar.
+3. Adicione o grão-de-bico, curry, sal e o leite de coco.
+4. Cozinhe por 5 minutos e finalize com coentro picado.
+`
   },
   {
-    nome: "Curry de lentilha",
-    ingredientes: { "Lentilha (xícara)": 1.5, "Leite de coco (ml)": 200, "Tomate (unid.)": 2, "Cebola (unid.)": 1 },
-    preparo: `1. Cozinhe a lentilha até ficar macia.
-2. Em uma panela, refogue cebola e tomate picados até desmanchar.
-3. Adicione a lentilha cozida, o leite de coco e curry em pó a gosto.
-4. Deixe apurar até engrossar levemente, ajuste o sal e sirva com arroz.`
+    nome: "Moqueca vegana de banana-da-terra",
+    ingredientes: {
+      "Banana-da-terra (unidade)": 2,
+      "Cebola (unidade)": 1,
+      "Tomate (unidade)": 2,
+      "Pimentão (unidade)": 1,
+      "Alho (dente)": 2,
+      "Leite de coco (ml)": 150,
+      "Azeite de dendê (ml)": 10,
+      "Azeite (ml)": 10,
+      "Cheiro-verde (colher de sopa)": 1,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Corte as bananas em rodelas grossas.
+2. Em uma panela, refogue cebola, alho, tomate e pimentão no azeite.
+3. Junte as bananas, o leite de coco e o azeite de dendê.
+4. Cozinhe em fogo baixo por 10 minutos.
+5. Tempere com sal, pimenta e finalize com cheiro-verde.
+`
   },
   {
-    nome: "Arroz integral com tofu",
-    ingredientes: { "Arroz integral (xícara)": 1.5, "Tofu (g)": 300 },
-    preparo: `1. Cozinhe o arroz integral em água e sal.
-2. Corte o tofu em cubos e doure com um pouco de azeite, sal e páprica.
-3. Misture o tofu ao arroz pronto, finalize com salsinha picada.
-4. Sirva quente ou frio, como preferir.`
+    nome: "Escondidinho de lentilha",
+    ingredientes: {
+      "Lentilha cozida (xícara)": 2,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Tomate (unidade)": 1,
+      "Batata (unidade)": 3,
+      "Leite de aveia (ml)": 80,
+      "Azeite (ml)": 10,
+      "Sal (g)": 6,
+      "Pimenta-do-reino (g)": 1,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Cozinhe as batatas e amasse, fazendo um purê com leite de aveia, azeite, sal e pimenta.
+2. Refogue a cebola e o alho no azeite. Junte o tomate e a lentilha cozida, tempere com sal e pimenta.
+3. Em um refratário, monte uma camada de purê, uma de lentilha refogada e cubra com o restante do purê.
+4. Leve ao forno para aquecer e finalize com salsinha.
+`
   },
   {
-    nome: "Berinjela recheada com quinoa",
-    ingredientes: { "Berinjela (unid.)": 2, "Quinoa (xícara)": 1 },
-    preparo: `1. Corte as berinjelas ao meio, retire parte do miolo e reserve.
-2. Cozinhe a quinoa e refogue com cebola, tomate e o miolo da berinjela picado.
-3. Recheie as metades de berinjela com a quinoa, regue com azeite.
-4. Leve ao forno médio até dourar e ficar macio.
-5. Sirva com salada verde.`
+    nome: "Risoto de abóbora",
+    ingredientes: {
+      "Arroz arbório (xícara)": 1,
+      "Abóbora (g)": 250,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 1,
+      "Caldo de legumes (ml)": 400,
+      "Azeite (ml)": 15,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Refogue a cebola e o alho no azeite.
+2. Acrescente a abóbora em cubos e refogue rapidamente.
+3. Adicione o arroz arbório e refogue mais um pouco.
+4. Acrescente o caldo de legumes aos poucos, mexendo sempre, até o arroz ficar cremoso.
+5. Tempere com sal, pimenta e finalize com salsinha.
+`
   },
   {
-    nome: "Chili vegano de feijão",
-    ingredientes: { "Feijão cozido (xícara)": 2, "Tomate (unid.)": 2 },
-    preparo: `1. Cozinhe o feijão até ficar macio.
-2. Em uma panela, refogue cebola, alho e tomate picado.
-3. Junte o feijão, tempere com páprica, cominho, sal e pimenta a gosto.
-4. Cozinhe até engrossar, finalize com coentro ou cheiro-verde.`
+    nome: "Arroz colorido vegano",
+    ingredientes: {
+      "Arroz (xícara)": 1,
+      "Cenoura (unidade)": 1,
+      "Pimentão (unidade)": 1,
+      "Milho verde (xícara)": 0.5,
+      "Ervilha (xícara)": 0.5,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 1,
+      "Óleo (ml)": 10,
+      "Água (ml)": 400,
+      "Sal (g)": 5,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Refogue a cebola e o alho no óleo.
+2. Junte a cenoura, o pimentão, milho e ervilha e refogue rapidamente.
+3. Acrescente o arroz, refogue mais um pouco e adicione a água e o sal.
+4. Cozinhe até secar e finalize com salsinha.
+`
   },
   {
-    nome: "Abobrinha recheada com legumes",
-    ingredientes: { "Abobrinha (unid.)": 2, "Legumes variados (g)": 150 },
-    preparo: `1. Corte as abobrinhas ao meio, retire parte do miolo.
-2. Refogue o miolo com outros legumes picados, tempere a gosto.
-3. Recheie as abobrinhas e regue com azeite.
-4. Leve ao forno médio até ficar macia e levemente dourada.
-5. Sirva quente ou fria.`
+    nome: "Berinjela recheada com legumes",
+    ingredientes: {
+      "Berinjela (unidade)": 2,
+      "Cenoura (unidade)": 1,
+      "Abobrinha (unidade)": 1,
+      "Tomate (unidade)": 1,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Azeite (ml)": 15,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Orégano (colher de chá)": 1,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Corte as berinjelas ao meio e retire um pouco da polpa.
+2. Refogue no azeite a polpa da berinjela, cenoura, abobrinha, tomate, cebola e alho picados.
+3. Tempere com sal, pimenta e orégano.
+4. Recheie as berinjelas, regue com azeite e leve ao forno por 25 minutos.
+5. Finalize com salsinha.
+`
   },
   {
-    nome: "Hambúrguer de lentilha",
-    ingredientes: { "Lentilha cozida (xícara)": 2, "Farinha de aveia (g)": 80 },
-    preparo: `1. Cozinhe a lentilha e escorra bem.
-2. Misture com a farinha de aveia, cebola picada, cheiro-verde, sal e pimenta.
-3. Modele hambúrgueres e grelhe em frigideira untada até dourar dos dois lados.
-4. Sirva no pão ou com salada.`
+    nome: "Panqueca vegana de legumes",
+    ingredientes: {
+      "Farinha de trigo (xícara)": 1,
+      "Leite vegetal (ml)": 180,
+      "Azeite (ml)": 10,
+      "Sal (g)": 5,
+      "Cenoura (unidade)": 1,
+      "Abobrinha (unidade)": 1,
+      "Tomate (unidade)": 1,
+      "Cebola (unidade)": 0.5,
+      "Alho (dente)": 1,
+      "Pimenta-do-reino (g)": 1,
+      "Orégano (colher de chá)": 1
+    },
+    preparo: `
+1. Bata a farinha, o leite vegetal, azeite e sal até formar uma massa lisa.
+2. Em uma frigideira untada, faça as panquecas.
+3. Refogue os legumes picados em azeite e tempere com sal, pimenta e orégano.
+4. Recheie as panquecas, enrole e sirva.
+`
   },
   {
-    nome: "Bobó de mandioquinha e coco",
-    ingredientes: { "Mandioquinha (g)": 300, "Leite de coco (ml)": 200 },
-    preparo: `1. Cozinhe a mandioquinha até ficar macia e amasse formando um purê.
-2. Em uma panela, refogue cebola e alho, acrescente o purê de mandioquinha.
-3. Misture o leite de coco e tempere com sal e pimenta.
-4. Cozinhe até engrossar levemente e finalize com cheiro-verde.`
+    nome: "Lentilha com legumes",
+    ingredientes: {
+      "Lentilha (xícara)": 1,
+      "Cenoura (unidade)": 1,
+      "Batata (unidade)": 1,
+      "Tomate (unidade)": 1,
+      "Cebola (unidade)": 1,
+      "Alho (dente)": 2,
+      "Óleo (ml)": 10,
+      "Água (ml)": 400,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Salsinha (colher de sopa)": 1
+    },
+    preparo: `
+1. Refogue a cebola e o alho no óleo.
+2. Adicione cenoura, batata e tomate em cubos e refogue.
+3. Acrescente a lentilha e cubra com água.
+4. Tempere com sal e pimenta e cozinhe até ficar macia.
+5. Finalize com salsinha.
+`
   },
   {
-    nome: "Moqueca de palmito",
-    ingredientes: { "Palmito (g)": 200, "Leite de coco (ml)": 200 },
-    preparo: `1. Em uma panela, refogue cebola, pimentão e tomate.
-2. Acrescente o palmito em rodelas e refogue rapidamente.
-3. Junte o leite de coco, um pouco de azeite de dendê (opcional) e cheiro-verde.
-4. Cozinhe por 5 minutos em fogo baixo.
-5. Sirva com arroz branco.`
+    nome: "Arroz de forno vegano",
+    ingredientes: {
+      "Arroz cozido (xícara)": 2,
+      "Cenoura (unidade)": 1,
+      "Ervilha (xícara)": 0.5,
+      "Milho verde (xícara)": 0.5,
+      "Tomate (unidade)": 1,
+      "Cebola (unidade)": 1,
+      "Azeite (ml)": 15,
+      "Leite de coco (ml)": 80,
+      "Sal (g)": 5,
+      "Pimenta-do-reino (g)": 1,
+      "Orégano (colher de chá)": 1
+    },
+    preparo: `
+1. Misture o arroz cozido com cenoura ralada, ervilha, milho, tomate e cebola picados.
+2. Adicione azeite, leite de coco, sal, pimenta e orégano.
+3. Transfira para um refratário, cubra com papel alumínio e leve ao forno por 20 minutos.
+`
   },
   {
-    nome: "Espaguete de abobrinha ao molho de tomate",
-    ingredientes: { "Abobrinha (unid.)": 3, "Molho de tomate (ml)": 200 },
-    preparo: `1. Corte as abobrinhas em tiras finas (tipo espaguete) usando ralador ou espiralizador.
-2. Refogue rapidamente em uma frigideira com azeite e sal, só para murchar levemente.
-3. Aqueça o molho de tomate e misture ao espaguete de abobrinha.
-4. Sirva com manjericão fresco e azeite.`
+    nome: "Salada de quinoa colorida",
+    ingredientes: {
+      "Quinoa (xícara)": 1,
+      "Tomate (unidade)": 2,
+      "Pepino (unidade)": 1,
+      "Cenoura (unidade)": 1,
+      "Cebola (unidade)": 0.5,
+      "Salsinha (colher de sopa)": 1,
+      "Azeite (ml)": 15,
+      "Limão (unidade)": 1,
+      "Sal (g)": 4,
+      "Pimenta-do-reino (g)": 1
+    },
+    preparo: `
+1. Cozinhe a quinoa em água até ficar macia. Escorra e deixe esfriar.
+2. Misture com tomate, pepino, cenoura ralada e cebola picados.
+3. Tempere com azeite, limão, sal, pimenta e salsinha.
+4. Sirva gelada.
+`
   }
 ],
 };
+// Função: Converte string de fração ("1/3") para decimal
+function parseQuantidade(q) {
+  if (typeof q === "string" && q.includes("/")) {
+    const [numerador, denominador] = q.split("/").map(Number);
+    return numerador / denominador;
+  }
+  return Number(q);
+}
+
+// Função: Converte decimal para fração legível (ex: 0.5 → 1/2, 1.33 → 1 1/3)
+function decimalParaFracao(decimal) {
+  if (Number.isInteger(decimal)) return decimal + ""; // Inteiros
+  const fracoesComuns = [
+    [1/8, "1/8"], [1/6, "1/6"], [1/5, "1/5"], [1/4, "1/4"],
+    [1/3, "1/3"], [3/8, "3/8"], [2/5, "2/5"], [1/2, "1/2"],
+    [3/5, "3/5"], [5/8, "5/8"], [2/3, "2/3"], [3/4, "3/4"],
+    [5/6, "5/6"], [7/8, "7/8"]
+  ];
+  const inteiro = Math.floor(decimal);
+  const frac = decimal - inteiro;
+  for (const [val, str] of fracoesComuns) {
+    if (Math.abs(frac - val) < 0.03) {
+      return inteiro ? `${inteiro} ${str}` : str;
+    }
+  }
+  return decimal.toFixed(2).replace(/\.00$/, "");
+}
 
 // Monta os selects de proteína para cada dia útil
 const diasContainer = document.getElementById("dias-container");
@@ -592,7 +1162,8 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
     resultadoHTML += `<li><strong>${diasUteis[index]}:</strong> ${pratoSelecionado.nome} (${proteina})</li>`;
 
     for (const [ingrediente, quantidade] of Object.entries(pratoSelecionado.ingredientes)) {
-      const total = (quantidade / 3) * pessoas;
+      const quantidadeUnitaria = parseQuantidade(quantidade);
+      const total = quantidadeUnitaria * pessoas;
       if (!listaCompras[ingrediente]) {
         listaCompras[ingrediente] = 0;
       }
@@ -622,12 +1193,7 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
       unidade = match[2].trim();
     }
 
-    const quantidadeFormatada =
-      Number.isInteger(quantidade)
-        ? quantidade
-        : quantidade % 1 === 0
-        ? quantidade
-        : quantidade.toFixed(2).replace(/\.00$/, "").replace(/(\.\d)0$/, "$1");
+    const quantidadeFormatada = decimalParaFracao(quantidade);
 
     let texto;
     if (unidade) {
@@ -641,7 +1207,7 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
     listaEl.appendChild(li);
   }
 
-  // Gerar e exibir modo de preparo detalhado com toggle
+  // Gerar e exibir modo de preparo detalhado com toggle e lista de ingredientes dinâmica
   const preparoContainer = document.getElementById("modo-preparo-container");
   preparoContainer.innerHTML = "";
   document.getElementById("preparo").style.display = "block";
@@ -650,9 +1216,50 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
     if (prato && prato.preparo) {
       const details = document.createElement("details");
       details.className = "toggle";
+
+      // Ingredientes (com separador)
+      let ingredientesHtml = `
+        <div class="preparo-ingredientes-titulo">
+          Ingredientes para ${pessoas} pessoa${pessoas > 1 ? 's' : ''}:
+        </div>
+        <ul class="preparo-ingredientes-lista">`;
+      Object.entries(prato.ingredientes).forEach(([ingrediente, quantidade]) => {
+        const quantidadeUnitaria = parseQuantidade(quantidade);
+        const total = quantidadeUnitaria * pessoas;
+        const match = ingrediente.match(/^(.+?)\s*\((.+?)\)$/);
+        let nome = ingrediente;
+        let unidade = "";
+        if (match) {
+          nome = match[1].trim();
+          unidade = match[2].trim();
+        }
+        const quantidadeFormatada = decimalParaFracao(total);
+        let texto = unidade
+          ? `${quantidadeFormatada} ${unidade} de ${nome}`
+          : `${quantidadeFormatada} ${nome}`;
+        ingredientesHtml += `<li>${texto}</li>`;
+      });
+      ingredientesHtml += '</ul><hr class="preparo-divider"/>';
+
+      // Passo-a-passo elegante
+      const passos = prato.preparo
+        .trim()
+        .split(/\n+/)
+        .filter(p => p.length)
+        .map(l => l.replace(/^\d+\.\s*/, "")); // Remove "1. ", "2. ", etc se tiver
+
+      let passosHtml = `
+        <div class="preparo-passoapasso-titulo">Modo de preparo</div>
+        <ol class="preparo-passos">`;
+      passos.forEach(passo => {
+        passosHtml += `<li>${passo}</li>`;
+      });
+      passosHtml += "</ol>";
+
       details.innerHTML = `
         <summary>${prato.nome}</summary>
-        <pre style="white-space: pre-wrap; font-family: inherit;">${prato.preparo}</pre>
+        ${ingredientesHtml}
+        ${passosHtml}
       `;
       preparoContainer.appendChild(details);
     }
