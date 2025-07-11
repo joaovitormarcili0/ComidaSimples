@@ -552,7 +552,7 @@ diasUteis.forEach(dia => {
   diasContainer.appendChild(div);
 });
 
-// Função para gerar cardápio, lista de compras e modo de preparo detalhado
+// Gera cardápio, lista de compras e modo de preparo detalhado
 document.getElementById("formulario").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -564,7 +564,6 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
   let ultimaProteina = null;
   const pratosSemana = [];
 
-  // Sorteia ou seleciona pratos sem repetir proteína no dia seguinte
   selects.forEach((select, index) => {
     const escolha = select.value;
     let proteina;
@@ -604,7 +603,7 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
   resultadoHTML += "</ul>";
   document.getElementById("resultado").innerHTML = resultadoHTML;
 
-  // Exibir lista de compras formatada e ordenada
+  // Exibir lista de compras formatada
   const comprasEl = document.getElementById("compras");
   comprasEl.style.display = "block";
   const listaEl = document.getElementById("lista-compras");
@@ -615,7 +614,6 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
   );
 
   for (const [ingredienteCompleto, quantidade] of ingredientesOrdenados) {
-    // Busca unidade e nome do ingrediente
     const match = ingredienteCompleto.match(/^(.+?)\s*\((.+?)\)$/);
     let nome = ingredienteCompleto;
     let unidade = "";
@@ -624,7 +622,6 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
       unidade = match[2].trim();
     }
 
-    // Formata quantidade: inteiro ou decimal só se precisar
     const quantidadeFormatada =
       Number.isInteger(quantidade)
         ? quantidade
@@ -632,7 +629,6 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
         ? quantidade
         : quantidade.toFixed(2).replace(/\.00$/, "").replace(/(\.\d)0$/, "$1");
 
-    // Monta frase final
     let texto;
     if (unidade) {
       texto = `${quantidadeFormatada} ${unidade} de ${nome}`;
