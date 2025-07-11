@@ -60,6 +60,24 @@ form {
   border-radius: 4px;
 }
 
+.instrucao {
+  margin-top: 100px;       /* Espaço maior acima da instrução */
+  margin-bottom: 20px;    /* Espaço abaixo */
+  text-align: center;       /* Alinha à esquerda */
+  font-size: 15px;        /* Mesma fonte do label de pessoas */
+  color: #555;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.instrucao p {
+  margin: 0;
+  font-size: 18px;
+  color: #555;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
 #dias-container {
   display: flex;
   justify-content: space-between;
