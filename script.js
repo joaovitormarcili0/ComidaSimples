@@ -1,3 +1,4 @@
+// ----------- Dados base -----------
 const diasUteis = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
 
 const receitas = {
@@ -212,7 +213,6 @@ carne: [
 `
   }
 ],
-// ---------------------- Frango ----------------------
 // ---------------------- Frango ----------------------
 frango: [
   {
@@ -1074,33 +1074,25 @@ vegano: [
   }
 ],
 };
-// Função: Converte string de fração ("1/3") para decimal
-function parseQuantidade(q) {
-  if (typeof q === "string" && q.includes("/")) {
-    const [numerador, denominador] = q.split("/").map(Number);
-    return numerador / denominador;
-  }
-  return Number(q);
-}
+// --- Funções utilitárias ---
+const parseQuantidade = (q) => (typeof q === "string" && q.includes("/")) ? (
+  (() => { const [n, d] = q.split("/").map(Number); return n / d; })()
+) : Number(q);
 
-// Função: Converte decimal para fração legível (ex: 0.5 → 1/2, 1.33 → 1 1/3)
-function decimalParaFracao(decimal) {
-  if (Number.isInteger(decimal)) return decimal + ""; // Inteiros
+const decimalParaFracao = (decimal) => {
+  if (Number.isInteger(decimal)) return decimal + "";
   const fracoesComuns = [
-    [1/8, "1/8"], [1/6, "1/6"], [1/5, "1/5"], [1/4, "1/4"],
-    [1/3, "1/3"], [3/8, "3/8"], [2/5, "2/5"], [1/2, "1/2"],
-    [3/5, "3/5"], [5/8, "5/8"], [2/3, "2/3"], [3/4, "3/4"],
+    [1/8, "1/8"], [1/6, "1/6"], [1/5, "1/5"], [1/4, "1/4"], [1/3, "1/3"], [3/8, "3/8"],
+    [2/5, "2/5"], [1/2, "1/2"], [3/5, "3/5"], [5/8, "5/8"], [2/3, "2/3"], [3/4, "3/4"],
     [5/6, "5/6"], [7/8, "7/8"]
   ];
   const inteiro = Math.floor(decimal);
   const frac = decimal - inteiro;
   for (const [val, str] of fracoesComuns) {
-    if (Math.abs(frac - val) < 0.03) {
-      return inteiro ? `${inteiro} ${str}` : str;
-    }
+    if (Math.abs(frac - val) < 0.03) return inteiro ? `${inteiro} ${str}` : str;
   }
   return decimal.toFixed(2).replace(/\.00$/, "");
-}
+};
 
 // ---------------------- CALORIAS & MACROS: REFERÊNCIA POR INGREDIENTE ----------------------
 const macrosIngredientes = {
@@ -1261,18 +1253,18 @@ const macrosIngredientes = {
     fat: (q) => 0,
     prot: (q) => q * 1.1,
   },
-  // Adicione/expanda conforme suas receitas!
+
 };
 
-// Função: Calcular macros (calorias, gordura, proteína)
+// --- Calcular macros totais do prato ---
 function calcularMacros(ingredientes) {
   let totalCal = 0, totalFat = 0, totalProt = 0;
   for (let ingrediente in ingredientes) {
     let quantidade = parseQuantidade(ingredientes[ingrediente]);
     if (macrosIngredientes[ingrediente]) {
-      totalCal += macrosIngredientes[ingrediente].cal ? macrosIngredientes[ingrediente].cal(quantidade) : 0;
-      totalFat += macrosIngredientes[ingrediente].fat ? macrosIngredientes[ingrediente].fat(quantidade) : 0;
-      totalProt += macrosIngredientes[ingrediente].prot ? macrosIngredientes[ingrediente].prot(quantidade) : 0;
+      totalCal += macrosIngredientes[ingrediente].cal?.(quantidade) || 0;
+      totalFat += macrosIngredientes[ingrediente].fat?.(quantidade) || 0;
+      totalProt += macrosIngredientes[ingrediente].prot?.(quantidade) || 0;
     }
   }
   return {
@@ -1282,15 +1274,15 @@ function calcularMacros(ingredientes) {
   };
 }
 
-// Monta os selects de proteína para cada dia útil
+// --------- Gera selects dos dias ----------
 const diasContainer = document.getElementById("dias-container");
 diasContainer.innerHTML = "";
 diasUteis.forEach(dia => {
   const div = document.createElement("div");
   div.classList.add("dia");
   div.innerHTML = `
-    <label>${dia}:</label>
-    <select name="${dia}">
+    <label for="select-${dia}">${dia}:</label>
+    <select name="${dia}" id="select-${dia}">
       <option value="aleatorio">Aleatório</option>
       <option value="carne">Carne</option>
       <option value="frango">Frango</option>
@@ -1302,171 +1294,149 @@ diasUteis.forEach(dia => {
   diasContainer.appendChild(div);
 });
 
-// Gera cardápio, lista de compras e modo de preparo detalhado
-document.getElementById("formulario").addEventListener("submit", function (e) {
+// ----------- Geração do cardápio -----------
+document.getElementById("formulario").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const pessoas = parseInt(document.getElementById("quantidade").value) || 3;
-  const selects = document.querySelectorAll("select");
+  const pessoas = Math.max(1, parseInt(document.getElementById("quantidade").value) || 3);
+  const selects = Array.from(document.querySelectorAll("#dias-container select"));
   const usados = new Set();
   const listaCompras = {};
-  let resultadoHTML = "<h2>Cardápio da Semana</h2><ul>";
   let ultimaProteina = null;
   const pratosSemana = [];
+  let resultadoHTML = "<h2>Cardápio da Semana</h2><ul>";
 
   selects.forEach((select, index) => {
-    const escolha = select.value;
+    let escolha = select.value;
     let proteina;
-
     if (escolha === "aleatorio") {
       const opcoes = Object.keys(receitas).filter(p => p !== ultimaProteina);
       proteina = opcoes[Math.floor(Math.random() * opcoes.length)];
     } else {
       proteina = escolha;
     }
-
     ultimaProteina = proteina;
 
+    // Sorteio de prato sem repetir na semana
     const pratosDisponiveis = receitas[proteina].filter(p => !usados.has(p.nome));
-    let pratoSelecionado;
+    let pratoSelecionado = pratosDisponiveis.length > 0 ?
+      pratosDisponiveis[Math.floor(Math.random() * pratosDisponiveis.length)] :
+      { nome: "⚠️ Nenhuma opção disponível", ingredientes: {}, preparo: "" };
 
-    if (pratosDisponiveis.length > 0) {
-      pratoSelecionado = pratosDisponiveis[Math.floor(Math.random() * pratosDisponiveis.length)];
-      usados.add(pratoSelecionado.nome);
-    } else {
-      pratoSelecionado = { nome: "⚠️ Nenhuma opção disponível", ingredientes: {}, preparo: "" };
-    }
-
+    usados.add(pratoSelecionado.nome);
     pratosSemana.push(pratoSelecionado);
 
-    // ------------ CALORIAS PARA TODOS OS TIPOS DE PRATO ------------
+    // Calorias para cada prato
     let calorias = "";
-    if (pratoSelecionado && pratoSelecionado.ingredientes && Object.keys(pratoSelecionado.ingredientes).length > 0) {
+    if (pratoSelecionado.ingredientes && Object.keys(pratoSelecionado.ingredientes).length > 0) {
       const macros = calcularMacros(pratoSelecionado.ingredientes);
-      if (macros.cal > 0) calorias = ` <span style="color:#888; font-size:0.95em;">~${macros.cal} kcal</span>`;
+      if (macros.cal > 0)
+        calorias = ` <span style="color:#888; font-size:0.95em;">~${macros.cal} kcal</span>`;
     }
 
     resultadoHTML += `<li><strong>${diasUteis[index]}:</strong> ${pratoSelecionado.nome}${calorias}</li>`;
 
-    // Lista de compras acumulada
+    // Acumula ingredientes para a lista de compras
     for (const [ingrediente, quantidade] of Object.entries(pratoSelecionado.ingredientes)) {
       const quantidadeUnitaria = parseQuantidade(quantidade);
       const total = quantidadeUnitaria * pessoas;
-      if (!listaCompras[ingrediente]) {
-        listaCompras[ingrediente] = 0;
-      }
-      listaCompras[ingrediente] += total;
+      listaCompras[ingrediente] = (listaCompras[ingrediente] || 0) + total;
     }
   });
 
   resultadoHTML += "</ul>";
   document.getElementById("resultado").innerHTML = resultadoHTML;
 
-  // Exibir lista de compras formatada
+  // Lista de compras ordenada
   const comprasEl = document.getElementById("compras");
   comprasEl.style.display = "block";
   const listaEl = document.getElementById("lista-compras");
   listaEl.innerHTML = "";
+  Object.entries(listaCompras)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .forEach(([ingredienteCompleto, quantidade]) => {
+      const match = ingredienteCompleto.match(/^(.+?)\s*\((.+?)\)$/);
+      let nome = ingredienteCompleto, unidade = "";
+      if (match) { nome = match[1].trim(); unidade = match[2].trim(); }
+      const quantidadeFormatada = decimalParaFracao(quantidade);
+      const texto = unidade ? `${quantidadeFormatada} ${unidade} de ${nome}` : `${quantidadeFormatada} ${nome}`;
+      const li = document.createElement("li");
+      li.textContent = texto;
+      listaEl.appendChild(li);
+    });
 
-  const ingredientesOrdenados = Object.entries(listaCompras).sort((a, b) =>
-    a[0].localeCompare(b[0])
-  );
-
-  for (const [ingredienteCompleto, quantidade] of ingredientesOrdenados) {
-    const match = ingredienteCompleto.match(/^(.+?)\s*\((.+?)\)$/);
-    let nome = ingredienteCompleto;
-    let unidade = "";
-    if (match) {
-      nome = match[1].trim();
-      unidade = match[2].trim();
-    }
-
-    const quantidadeFormatada = decimalParaFracao(quantidade);
-
-    let texto;
-    if (unidade) {
-      texto = `${quantidadeFormatada} ${unidade} de ${nome}`;
-    } else {
-      texto = `${quantidadeFormatada} ${nome}`;
-    }
-
-    const li = document.createElement("li");
-    li.textContent = texto;
-    listaEl.appendChild(li);
-  }
-
-  // Gerar e exibir modo de preparo detalhado com toggle e lista de ingredientes dinâmica
+  // Modo de preparo detalhado para cada prato
   const preparoContainer = document.getElementById("modo-preparo-container");
   preparoContainer.innerHTML = "";
   document.getElementById("preparo").style.display = "block";
 
   pratosSemana.forEach(prato => {
-    if (prato && prato.preparo) {
-      const details = document.createElement("details");
-      details.className = "toggle";
+    if (!prato.preparo) return;
+    const details = document.createElement("details");
+    details.className = "toggle";
 
-      // Ingredientes
-      let ingredientesHtml = `
-        <div class="preparo-ingredientes-titulo">
-          Ingredientes para ${pessoas} pessoa${pessoas > 1 ? 's' : ''}:
+    // Ingredientes
+    let ingredientesHtml = `
+      <div class="preparo-ingredientes-titulo">
+        Ingredientes para ${pessoas} pessoa${pessoas > 1 ? 's' : ''}:
+      </div>
+      <ul class="preparo-ingredientes-lista">`;
+    Object.entries(prato.ingredientes).forEach(([ingrediente, quantidade]) => {
+      const quantidadeUnitaria = parseQuantidade(quantidade);
+      const total = quantidadeUnitaria * pessoas;
+      const match = ingrediente.match(/^(.+?)\s*\((.+?)\)$/);
+      let nome = ingrediente, unidade = "";
+      if (match) { nome = match[1].trim(); unidade = match[2].trim(); }
+      const quantidadeFormatada = decimalParaFracao(total);
+      ingredientesHtml += `<li>${unidade ? quantidadeFormatada + " " + unidade + " de " + nome : quantidadeFormatada + " " + nome}</li>`;
+    });
+    ingredientesHtml += '</ul><hr class="preparo-divider"/>';
+
+    // Passo-a-passo
+    const passos = prato.preparo
+      .trim()
+      .split(/\n+/)
+      .filter(Boolean)
+      .map(l => l.replace(/^\d+\.\s*/, "")); // Remove "1. ", "2. "
+
+    let passosHtml = `<div class="preparo-passoapasso-titulo">Modo de preparo</div>
+      <ol class="preparo-passos">`;
+    passos.forEach(passo => { passosHtml += `<li>${passo}</li>`; });
+    passosHtml += "</ol>";
+
+    // Macros toggle
+    const macros = calcularMacros(prato.ingredientes);
+    let macrosHtml = `
+      <div style="border-top: 1px solid #000; margin:16px 0 8px 0;"></div>
+      <details class="toggle-macros" style="margin-bottom:8px;">
+        <summary style="font-size:0.97em; color:#666; font-weight:500;">Informação nutricional (estimada)</summary>
+        <div style="padding:8px 0 8px 12px;">
+          <span><strong>Calorias:</strong> ${macros.cal} kcal</span><br/>
+          <span><strong>Gorduras totais:</strong> ${macros.fat} g</span><br/>
+          <span><strong>Proteínas:</strong> ${macros.prot} g</span>
         </div>
-        <ul class="preparo-ingredientes-lista">`;
-      Object.entries(prato.ingredientes).forEach(([ingrediente, quantidade]) => {
-        const quantidadeUnitaria = parseQuantidade(quantidade);
-        const total = quantidadeUnitaria * pessoas;
-        const match = ingrediente.match(/^(.+?)\s*\((.+?)\)$/);
-        let nome = ingrediente;
-        let unidade = "";
-        if (match) {
-          nome = match[1].trim();
-          unidade = match[2].trim();
-        }
-        const quantidadeFormatada = decimalParaFracao(total);
-        let texto = unidade
-          ? `${quantidadeFormatada} ${unidade} de ${nome}`
-          : `${quantidadeFormatada} ${nome}`;
-        ingredientesHtml += `<li>${texto}</li>`;
-      });
-      ingredientesHtml += '</ul><hr class="preparo-divider" style="border-top: 1px solid #222; margin: 12px 0;"/>';
+      </details>
+    `;
 
-      // Passo-a-passo elegante
-      const passos = prato.preparo
-        .trim()
-        .split(/\n+/)
-        .filter(p => p.length)
-        .map(l => l.replace(/^\d+\.\s*/, "")); // Remove "1. ", "2. ", etc
-
-      let passosHtml = `
-        <div class="preparo-passoapasso-titulo">Modo de preparo</div>
-        <ol class="preparo-passos">`;
-      passos.forEach(passo => {
-        passosHtml += `<li>${passo}</li>`;
-      });
-      passosHtml += "</ol>";
-
-      // Toggle de Macros DEPOIS do modo de preparo
-      const macros = calcularMacros(prato.ingredientes);
-      let macrosHtml = `
-        <div style="border-top: 1px solid #000; margin:16px 0 8px 0;"></div>
-        <details class="toggle-macros" style="margin-bottom:8px;">
-          <summary style="font-size:0.97em; color:#666; font-weight:500;">Informação nutricional (estimada)</summary>
-          <div style="padding:8px 0 8px 12px;">
-            <span><strong>Calorias:</strong> ${macros.cal} kcal</span><br/>
-            <span><strong>Gorduras totais:</strong> ${macros.fat} g</span><br/>
-            <span><strong>Proteínas:</strong> ${macros.prot} g</span>
-          </div>
-        </details>
-      `;
-
-      details.innerHTML = `
-        <summary>${prato.nome}</summary>
-        ${ingredientesHtml}
-        ${passosHtml}
-        ${macrosHtml}
-      `;
-
-      preparoContainer.appendChild(details);
-    }
+    details.innerHTML = `<summary>${prato.nome}</summary>
+      ${ingredientesHtml}
+      ${passosHtml}
+      ${macrosHtml}`;
+    preparoContainer.appendChild(details);
   });
 });
 
+// ----------- Dark Mode -----------
+const toggleDarkMode = document.getElementById("toggle-darkmode");
+toggleDarkMode.addEventListener("change", function () {
+  document.body.classList.toggle("darkmode", this.checked);
+  localStorage.setItem("darkmode", this.checked ? "on" : "off");
+});
+
+// Carrega preferências do darkmode ao abrir a página
+window.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("darkmode") === "on") {
+    document.body.classList.add("darkmode");
+    toggleDarkMode.checked = true;
+  }
+});
