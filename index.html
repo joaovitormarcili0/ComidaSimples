@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gerador de Cardápio da Semana</title>
+  <title>Comida Simples</title>
   <meta name="description" content="Monte um cardápio semanal para sua família de forma automática, com lista de compras e modo de preparo detalhado para cada prato.">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="container">
-    <h1>Cardápio da Semana</h1>
+    <h1>Comida Simples</h1>
     <form id="formulario" autocomplete="off">
       <div class="linha-superior">
         <div class="pessoas">
@@ -24,17 +24,17 @@
           <span class="darkmode-label" id="darkmode-label">Dark Mode</span>
         </div>
       </div>
-      <div id="dias-instrucao" class="instrucao">
-        <p>Monte seu cardápio: selecione a base de cada almoço da semana</p>
-      </div>
-      <div id="dias-container" role="group" aria-label="Seleção de proteína por dia"></div>
-      <button type="submit">Gerar Cardápio</button>
+      <!-- Seletor modo (Para agora/Para semana) vai aqui -->
+      <div id="modo-container"></div>
+      <!-- Seletor de tipo de prato ou dias da semana vai aqui -->
+      <div id="opcao-container"></div>
+      <button type="submit" id="botao-gerar">GERAR CARDÁPIO</button>
     </form>
 
     <div class="grid">
       <section id="resultado" aria-live="polite"></section>
       <section id="compras" style="display: none;">
-        <h2>Lista de Compras da Semana</h2>
+        <h2>Lista de Compras</h2>
         <ul id="lista-compras"></ul>
       </section>
     </div>
@@ -44,6 +44,8 @@
       <div id="modo-preparo-container"></div>
     </section>
   </main>
+  <!-- Ordem dos scripts importa! -->
+  <script src="dados.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
