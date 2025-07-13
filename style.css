@@ -18,6 +18,57 @@ body {
   border: 1px solid #eee;
 }
 
+/* ========== SELETOR DE MODO (Para agora / Para semana) ========== */
+.modo-switcher {
+  display: flex;
+  gap: 24px;
+  margin: 30px 0 22px 0;
+  justify-content: flex-start;
+}
+.modo-btn {
+  min-width: 280px;
+  padding: 24px 0 24px 0;
+  background: #fff;
+  border: 2px solid #23242a;
+  border-radius: 38px;
+  font-size: 1.25rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: #23242a;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  box-shadow: 0 1px 8px 0 rgba(60,60,60,0.06);
+  user-select: none;
+  outline: none;
+}
+
+.modo-btn.ativo {
+  background: #fff;
+  color: #23242a;
+  border: 2.5px solid #23242a;
+  z-index: 2;
+}
+
+.modo-btn:not(.ativo) {
+  background: #f3f3f7;
+  color: #bdbdbd;
+  border: 2px solid #eee;
+}
+
+.modo-btn:not(.ativo):hover,
+.modo-btn:not(.ativo):focus {
+  background: #ececec;
+  color: #23242a;
+  border-color: #aaa;
+}
+
+.modo-btn:active {
+  background: #23242a;
+  color: #fff;
+  border-color: #23242a;
+}
+
 /* ========== TITULOS ========== */
 h1, h2 {
   font-family: 'Playfair Display', serif;
@@ -35,7 +86,7 @@ h2 {
   margin-bottom: 28px;
 }
 
-/* ========== LINHA SUPERIOR (quantas pessoas e darkmode) ========== */
+/* ========== LINHA SUPERIOR ========== */
 .linha-superior {
   display: flex;
   align-items: center;
@@ -179,6 +230,21 @@ select {
   color: #222;
   margin-top: 6px;
   border-radius: 5px;
+}
+
+/* Ajuste para o select rápido do modo agora */
+#prato-agora-opcao label {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #555;
+  display: block;
+}
+#prato-agora-opcao select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
 }
 
 /* ========== BOTÃO PRINCIPAL ========== */
@@ -337,7 +403,7 @@ ul li { margin-bottom: 10px; }
   padding: 8px 0 0 0;
 }
 
-/* ========== DARK MODE PREMIUM ========== */
+/* ========== DARK MODE ATUALIZADO ========== */
 body.darkmode {
   background: #18191b;
   color: #fff;
@@ -358,6 +424,37 @@ body.darkmode #dias-container label {
   color: #fff !important;
   border-bottom: 1px solid #fff !important;
 }
+
+/* ========== NOVO: SELETOR DE MODO NO DARK MODE ========== */
+body.darkmode .modo-btn {
+  background: #23242a;
+  color: #bdbdbd;
+  border-color: #232323;
+}
+body.darkmode .modo-btn.ativo {
+  background: #23242a;
+  color: #fff;
+  border-color: #fff !important;
+  z-index: 2;
+}
+body.darkmode .modo-btn:not(.ativo) {
+  background: #23242a;
+  color: #bdbdbd;
+  border-color: #232323;
+}
+body.darkmode .modo-btn:not(.ativo):hover,
+body.darkmode .modo-btn:not(.ativo):focus {
+  background: #2a2c30;
+  color: #fff;
+  border-color: #fff;
+}
+body.darkmode .modo-btn:active {
+  background: #f3f3f7;
+  color: #23242a;
+  border-color: #eee;
+}
+
+/* Outras partes do darkmode */
 body.darkmode .toggle,
 body.darkmode .toggle[open],
 body.darkmode .toggle-macros,
@@ -419,6 +516,7 @@ body.darkmode .darkmode-switcher span {
 
 /* ========== RESPONSIVO ========== */
 @media (max-width: 700px) {
+  .modo-btn { min-width: 110px; padding: 13px 0; font-size: 1.05rem; }
   .toggle summary, .toggle pre { padding-left: 12px; padding-right: 12px; }
 }
 @media (max-width: 600px) {
